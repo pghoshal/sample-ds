@@ -1,0 +1,44 @@
+---
+id: convention:token-taxonomy
+type: convention
+title: Enterprise token taxonomy
+summary: Deterministic token selection rules for themes, density, states, data visualization, motion, elevation, layers, and platform aliases.
+tags: [tokens, taxonomy, deterministic, enterprise, theme, density, data-viz]
+related:
+  - token:theme.light.color.surface.canvas
+  - token:theme.dark.color.surface.canvas
+  - token:theme.highContrast.color.surface.canvas
+  - token:density.compact.control.height
+  - token:state.action.primary.hover
+  - token:dataviz.risk.high
+  - token:motion.duration.normal
+  - token:elevation.card
+  - token:layer.sticky
+  - token:platform.web.layout.pageMaxWidth
+---
+
+# Enterprise token taxonomy
+
+Generated UI must select tokens by semantic role first, then by mode or platform. Primitive tokens are implementation inputs, not application-facing choices.
+
+## Do
+
+- Use `theme.*` tokens when rendering app shells across light, dark, or high-contrast surfaces.
+- Use `density.*` tokens when a component has compact and comfortable modes.
+- Use `state.*` tokens for hover, focus, pressed, and disabled states.
+- Use `dataviz.*` tokens for charts and risk visualizations.
+- Use `motion.*`, `elevation.*`, and `layer.*` tokens instead of raw CSS values.
+- Use `platform.*` aliases when generating platform-specific code.
+
+## Do not
+
+- Do not use `token:color.blue.500` directly in product UI.
+- Do not hard-code chart colors, transition durations, shadows, or z-index values.
+- Do not mix compact density row heights with comfortable density gaps.
+
+## Accessibility
+
+- High contrast theme tokens must preserve text/background contrast.
+- Chart colors must be accompanied by text labels or summaries.
+- Focus ring tokens are required for keyboard-interactive components.
+

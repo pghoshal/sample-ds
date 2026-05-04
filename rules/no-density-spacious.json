@@ -1,0 +1,13 @@
+{
+  "id": "no-density-spacious",
+  "description": "Density must be compact or comfortable.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx"],
+  "detector": {
+    "type": "jsx-prop-value",
+    "prop": "density",
+    "disallow": ["spacious", "dense", "default"],
+    "message": "Density '{value}' is not supported. Use compact or comfortable."
+  }
+}
+

@@ -9,6 +9,8 @@ related:
   - component:text-field
   - component:alert
   - component:button
+  - component:data-table
+  - component:badge
   - principle:clarity
 contract:
   requiredComponents:
@@ -16,9 +18,12 @@ contract:
     - component:text-field
     - component:alert
     - component:button
+    - component:data-table
+    - component:badge
   optionalComponents:
     - component:stack
     - component:modal
+    - component:chart
   forbiddenComponents:
     - component:legacy-button
   requiredTokens:
@@ -26,6 +31,10 @@ contract:
     - token:color.surface.raised
     - token:color.text.primary
     - token:color.action.primary
+    - token:density.compact.control.height
+    - token:state.action.primary.hover
+    - token:motion.duration.fast
+    - token:elevation.card
   requiredPrinciples:
     - principle:clarity
     - principle:accessibility-first
@@ -33,6 +42,7 @@ contract:
     - component:text-field
     - component:card
     - component:alert
+    - component:data-table
     - component:button
   propRequirements:
     - component: component:alert
@@ -45,6 +55,11 @@ contract:
       oneOf: [primary, secondary, danger]
       severity: error
       message: Billing actions must use documented button variants only.
+    - component: component:data-table
+      prop: ariaLabel
+      equals: Invoice risk records
+      severity: error
+      message: Billing risk tables must expose an accessible invoice record label.
   platformRequirements:
     - platform: web
       framework: react
@@ -54,6 +69,7 @@ contract:
         - component:legacy-button
       requiredTokens:
         - token:component.card.padding
+        - token:platform.web.font.body
   slots:
     - name: search
       required: true
@@ -63,6 +79,10 @@ contract:
       required: true
       component: component:button
       description: Main review action.
+    - name: records
+      required: true
+      component: component:data-table
+      description: Invoice risk record table.
   constraints:
     - id: expose-account-state
       severity: error
@@ -77,6 +97,8 @@ Use this pattern when finance or support operators need to review risk signals a
 
 - Start with a labeled search or filter field.
 - Show account, invoice, and collection risk in separate `component:card` sections.
+- Use `component:data-table` for sortable invoice records.
+- Use `component:badge` to pair risk color with visible state text.
 - Use `component:alert` when overdue invoices or suspension risk are present.
 - Use `component:button` with action-specific labels such as `Review invoices` or `Suspend account`.
 
@@ -85,4 +107,3 @@ Use this pattern when finance or support operators need to review risk signals a
 - Do not use `component:legacy-button`.
 - Do not bury risk state below the primary action.
 - Do not invent tokens or variants.
-

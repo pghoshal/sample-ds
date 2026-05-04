@@ -27,8 +27,11 @@
       "component": "Modal",
       "tokens": {
         "surface": "token:color.surface.raised",
+        "overlay": "token:theme.light.color.surface.overlay",
         "shadow": "token:shadow.modal",
-        "radius": "token:radius.lg"
+        "radius": "token:radius.lg",
+        "layer": "token:layer.modal",
+        "motion": "token:motion.duration.slow"
       },
       "props": {
         "role": "dialog"
@@ -67,7 +70,17 @@
       "message": "Modals must have a specific title."
     }
   ],
-  "tokens": ["token:color.surface.raised", "token:shadow.modal", "token:radius.lg"],
+  "tokens": [
+    "token:color.surface.raised",
+    "token:theme.light.color.surface.overlay",
+    "token:theme.dark.color.surface.overlay",
+    "token:theme.highContrast.color.surface.overlay",
+    "token:shadow.modal",
+    "token:elevation.overlay",
+    "token:radius.lg",
+    "token:layer.modal",
+    "token:motion.duration.slow"
+  ],
   "principles": ["principle:accessibility-first", "principle:clarity"],
   "patterns": ["pattern:destructive-confirmation"],
   "related": []

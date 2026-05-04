@@ -1,0 +1,12 @@
+{
+  "id": "no-raw-motion-values",
+  "description": "Transition and animation durations must use motion tokens.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx", "ts", "js", "css"],
+  "detector": {
+    "type": "regex",
+    "pattern": "\\b(?:transition|animation|duration)[^;\\n]*\\b\\d+(?:ms|s)\\b",
+    "message": "Raw motion value in {match} is not allowed. Use token:motion.duration.*."
+  }
+}
+

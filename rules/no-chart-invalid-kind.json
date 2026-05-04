@@ -1,0 +1,14 @@
+{
+  "id": "no-chart-invalid-kind",
+  "description": "Chart kind must be one of the documented Atlas visualization kinds.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx"],
+  "detector": {
+    "type": "jsx-prop-value",
+    "component": "Chart",
+    "prop": "kind",
+    "disallow": ["area", "scatter", "heatmap", "pie"],
+    "message": "Chart kind '{value}' is not in the Atlas design system."
+  }
+}
+

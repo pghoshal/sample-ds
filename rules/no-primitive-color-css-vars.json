@@ -1,0 +1,12 @@
+{
+  "id": "no-primitive-color-css-vars",
+  "description": "Application UI must use semantic color tokens instead of primitive palette variables.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx", "ts", "js", "css", "html"],
+  "detector": {
+    "type": "regex",
+    "pattern": "var\\(--color-(?:blue|slate|red|amber|green|white)(?:-[A-Za-z0-9]+)*\\)",
+    "message": "Primitive color variable {match} is not allowed in product UI. Resolve a semantic theme, surface, action, status, or data-viz token."
+  }
+}
+

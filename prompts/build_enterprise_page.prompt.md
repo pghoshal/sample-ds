@@ -23,9 +23,9 @@ Follow this deterministic handoff:
 4. Call `explain_decision` for selected pattern and components.
 5. Call `get_usage` before writing imports or props.
 6. Call `resolve_token` for every color, spacing, radius, typography, and shadow value.
-7. Call `validate_composition` before code generation.
-8. Generate code using only documented components, props, and tokens.
-9. Call `validate_ui`, repair deterministic violations, and validate again.
+7. Resolve theme, density, state, data-viz, motion, elevation, layer, breakpoint, and platform tokens when the UI touches those concerns.
+8. Call `validate_composition` before code generation.
+9. Generate code using only documented components, props, and tokens.
+10. Call `validate_ui`, repair deterministic violations, and validate again.
 
 Do not invent component variants, token names, or copy tone.
-

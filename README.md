@@ -40,13 +40,19 @@ and a destructive suspend-account confirmation path.
 This intent should involve:
 
 - `pattern:billing-risk-review`
+- `pattern:risk-dashboard`
 - `pattern:destructive-confirmation`
+- `component:theme-provider`
 - `component:card`
 - `component:button`
 - `component:text-field`
 - `component:alert`
 - `component:modal`
+- `component:data-table`
+- `component:chart`
+- `component:badge`
 - semantic color, spacing, typography, radius, and shadow tokens
+- multi-theme, density, state, data-viz, motion, elevation, layer, breakpoint, and platform tokens
 
 ## Negative Validation Ideas
 

@@ -1,0 +1,162 @@
+{
+  "density": {
+    "compact": {
+      "control": {
+        "height": {
+          "$value": "32px",
+          "$type": "dimension",
+          "$description": "Compact control height for dense data workflows."
+        },
+        "gap": {
+          "$value": "{space.2}",
+          "$type": "dimension",
+          "$description": "Compact control gap."
+        }
+      },
+      "card": {
+        "padding": {
+          "$value": "{space.4}",
+          "$type": "dimension",
+          "$description": "Compact card padding."
+        }
+      }
+    },
+    "comfortable": {
+      "control": {
+        "height": {
+          "$value": "{component.input.height}",
+          "$type": "dimension",
+          "$description": "Comfortable control height."
+        },
+        "gap": {
+          "$value": "{space.3}",
+          "$type": "dimension",
+          "$description": "Comfortable control gap."
+        }
+      },
+      "card": {
+        "padding": {
+          "$value": "{component.card.padding}",
+          "$type": "dimension",
+          "$description": "Comfortable card padding."
+        }
+      }
+    }
+  },
+  "state": {
+    "action": {
+      "primary": {
+        "default": {
+          "$value": "{color.action.primary}",
+          "$type": "color",
+          "$description": "Primary action default state."
+        },
+        "hover": {
+          "$value": "{color.action.primaryHover}",
+          "$type": "color",
+          "$description": "Primary action hover state."
+        },
+        "focusRing": {
+          "$value": "{theme.light.color.focus.ring}",
+          "$type": "color",
+          "$description": "Primary action focus ring."
+        },
+        "disabled": {
+          "$value": "{color.slate.100}",
+          "$type": "color",
+          "$description": "Disabled action background."
+        }
+      },
+      "danger": {
+        "default": {
+          "$value": "{color.action.danger}",
+          "$type": "color",
+          "$description": "Danger action default state."
+        },
+        "hover": {
+          "$value": "{color.red.800}",
+          "$type": "color",
+          "$description": "Danger action hover state."
+        },
+        "focusRing": {
+          "$value": "{color.red.600}",
+          "$type": "color",
+          "$description": "Danger action focus ring."
+        }
+      }
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": {
+        "$value": "120ms",
+        "$type": "duration",
+        "$description": "Fast state transition."
+      },
+      "normal": {
+        "$value": "180ms",
+        "$type": "duration",
+        "$description": "Default transition duration."
+      },
+      "slow": {
+        "$value": "280ms",
+        "$type": "duration",
+        "$description": "Entrance or overlay transition."
+      }
+    },
+    "easing": {
+      "standard": {
+        "$value": [0.2, 0, 0, 1],
+        "$type": "cubicBezier",
+        "$description": "Standard product easing."
+      }
+    }
+  },
+  "elevation": {
+    "card": {
+      "$value": "{shadow.card}",
+      "$type": "shadow",
+      "$description": "Token alias for card elevation."
+    },
+    "overlay": {
+      "$value": "{shadow.modal}",
+      "$type": "shadow",
+      "$description": "Token alias for overlay elevation."
+    }
+  },
+  "layer": {
+    "base": {
+      "$value": 0,
+      "$type": "number",
+      "$description": "Base stacking layer."
+    },
+    "sticky": {
+      "$value": 100,
+      "$type": "number",
+      "$description": "Sticky table headers and toolbars."
+    },
+    "modal": {
+      "$value": 1000,
+      "$type": "number",
+      "$description": "Modal overlay layer."
+    }
+  },
+  "breakpoint": {
+    "sm": {
+      "$value": "640px",
+      "$type": "dimension",
+      "$description": "Small viewport breakpoint."
+    },
+    "md": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Medium viewport breakpoint."
+    },
+    "lg": {
+      "$value": "1200px",
+      "$type": "dimension",
+      "$description": "Large viewport breakpoint."
+    }
+  }
+}
+

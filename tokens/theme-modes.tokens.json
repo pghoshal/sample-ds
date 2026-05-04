@@ -1,0 +1,125 @@
+{
+  "theme": {
+    "light": {
+      "color": {
+        "surface": {
+          "canvas": {
+            "$value": "{color.surface.canvas}",
+            "$type": "color",
+            "$description": "Light theme app canvas."
+          },
+          "raised": {
+            "$value": "{color.surface.raised}",
+            "$type": "color",
+            "$description": "Light theme raised surface."
+          },
+          "overlay": {
+            "$value": "#FFFFFF",
+            "$type": "color",
+            "$description": "Light theme overlay surface."
+          }
+        },
+        "text": {
+          "primary": {
+            "$value": "{color.text.primary}",
+            "$type": "color",
+            "$description": "Light theme primary text."
+          },
+          "secondary": {
+            "$value": "{color.text.secondary}",
+            "$type": "color",
+            "$description": "Light theme secondary text."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$value": "{color.blue.500}",
+            "$type": "color",
+            "$description": "Light theme focus ring."
+          }
+        }
+      }
+    },
+    "dark": {
+      "color": {
+        "surface": {
+          "canvas": {
+            "$value": "#0B1120",
+            "$type": "color",
+            "$description": "Dark theme app canvas."
+          },
+          "raised": {
+            "$value": "#111827",
+            "$type": "color",
+            "$description": "Dark theme raised surface."
+          },
+          "overlay": {
+            "$value": "#1F2937",
+            "$type": "color",
+            "$description": "Dark theme overlay surface."
+          }
+        },
+        "text": {
+          "primary": {
+            "$value": "#F8FAFC",
+            "$type": "color",
+            "$description": "Dark theme primary text."
+          },
+          "secondary": {
+            "$value": "#CBD5E1",
+            "$type": "color",
+            "$description": "Dark theme secondary text."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$value": "#60A5FA",
+            "$type": "color",
+            "$description": "Dark theme focus ring."
+          }
+        }
+      }
+    },
+    "highContrast": {
+      "color": {
+        "surface": {
+          "canvas": {
+            "$value": "#000000",
+            "$type": "color",
+            "$description": "High contrast app canvas."
+          },
+          "raised": {
+            "$value": "#000000",
+            "$type": "color",
+            "$description": "High contrast raised surface."
+          },
+          "overlay": {
+            "$value": "#000000",
+            "$type": "color",
+            "$description": "High contrast overlay surface."
+          }
+        },
+        "text": {
+          "primary": {
+            "$value": "#FFFFFF",
+            "$type": "color",
+            "$description": "High contrast primary text."
+          },
+          "secondary": {
+            "$value": "#FDE68A",
+            "$type": "color",
+            "$description": "High contrast secondary text."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$value": "#FDE047",
+            "$type": "color",
+            "$description": "High contrast focus ring."
+          }
+        }
+      }
+    }
+  }
+}
+

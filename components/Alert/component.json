@@ -28,7 +28,10 @@
       "tokens": {
         "warningSurface": "token:color.surface.warning",
         "dangerSurface": "token:color.surface.danger",
-        "warningAccent": "token:color.status.warning"
+        "successAccent": "token:color.status.success",
+        "warningAccent": "token:color.status.warning",
+        "dangerAccent": "token:color.status.danger",
+        "secondaryText": "token:color.text.secondary"
       },
       "props": {
         "tone": "warning"
@@ -67,7 +70,14 @@
       "message": "Place alerts near the action or content they qualify."
     }
   ],
-  "tokens": ["token:color.surface.warning", "token:color.surface.danger", "token:color.status.warning"],
+  "tokens": [
+    "token:color.surface.warning",
+    "token:color.surface.danger",
+    "token:color.status.success",
+    "token:color.status.warning",
+    "token:color.status.danger",
+    "token:color.text.secondary"
+  ],
   "principles": ["principle:clarity", "principle:accessibility-first"],
   "patterns": ["pattern:billing-risk-review", "pattern:destructive-confirmation"],
   "related": []

@@ -1,0 +1,53 @@
+{
+  "platform": {
+    "web": {
+      "font": {
+        "body": {
+          "$value": "{font.family.sans}",
+          "$type": "fontFamily",
+          "$description": "Web body font."
+        }
+      },
+      "layout": {
+        "pageMaxWidth": {
+          "$value": "1280px",
+          "$type": "dimension",
+          "$description": "Maximum web page content width."
+        }
+      }
+    },
+    "ios": {
+      "font": {
+        "body": {
+          "$value": "SF Pro Text",
+          "$type": "fontFamily",
+          "$description": "iOS body font mapping."
+        }
+      },
+      "radius": {
+        "control": {
+          "$value": "10px",
+          "$type": "dimension",
+          "$description": "iOS control radius mapping."
+        }
+      }
+    },
+    "android": {
+      "font": {
+        "body": {
+          "$value": "Roboto",
+          "$type": "fontFamily",
+          "$description": "Android body font mapping."
+        }
+      },
+      "radius": {
+        "control": {
+          "$value": "8px",
+          "$type": "dimension",
+          "$description": "Android control radius mapping."
+        }
+      }
+    }
+  }
+}
+

@@ -28,7 +28,10 @@
       "tokens": {
         "surface": "token:color.surface.raised",
         "padding": "token:component.card.padding",
-        "radius": "token:component.card.radius"
+        "compactPadding": "token:density.compact.card.padding",
+        "comfortablePadding": "token:density.comfortable.card.padding",
+        "radius": "token:component.card.radius",
+        "elevation": "token:elevation.card"
       }
     }
   ],
@@ -64,8 +67,17 @@
       "message": "Cards must have a short title that describes the grouped content."
     }
   ],
-  "tokens": ["token:color.surface.raised", "token:component.card.padding", "token:component.card.radius"],
+  "tokens": [
+    "token:color.surface.raised",
+    "token:color.surface.muted",
+    "token:component.card.padding",
+    "token:component.card.radius",
+    "token:density.compact.card.padding",
+    "token:density.comfortable.card.padding",
+    "token:elevation.card",
+    "token:shadow.card"
+  ],
   "principles": ["principle:clarity"],
-  "patterns": ["pattern:billing-risk-review"],
+  "patterns": ["pattern:billing-risk-review", "pattern:risk-dashboard"],
   "related": []
 }

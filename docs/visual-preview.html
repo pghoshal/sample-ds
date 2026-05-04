@@ -133,6 +133,28 @@
         gap: var(--space-6);
       }
 
+      .mode-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-3);
+        margin-bottom: var(--space-6);
+      }
+
+      .mode {
+        min-height: 72px;
+        border-radius: var(--radius-md);
+        border: 1px solid #d8dee8;
+        padding: var(--space-4);
+        font-weight: var(--font-weight-semibold);
+      }
+
+      .mode span {
+        display: block;
+        margin-top: var(--space-2);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+      }
+
       .cards {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -194,6 +216,57 @@
         margin-bottom: var(--space-4);
       }
 
+      .chart {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: end;
+        gap: var(--space-3);
+        height: 180px;
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        background: var(--color-surface-muted);
+        margin-bottom: var(--space-4);
+      }
+
+      .bar {
+        min-height: 24px;
+        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 var(--space-3);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface-danger);
+        color: var(--color-text-danger);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--font-size-sm);
+      }
+
+      th,
+      td {
+        padding: var(--space-3);
+        text-align: left;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--color-surface-muted);
+        color: var(--color-text-secondary);
+        font-weight: var(--font-weight-semibold);
+      }
+
       .alert strong {
         display: block;
         margin-bottom: var(--space-2);
@@ -231,6 +304,7 @@
         padding: 0 var(--space-4);
         font: inherit;
         font-weight: var(--font-weight-semibold);
+        transition: background 120ms cubic-bezier(0.2, 0, 0, 1);
       }
 
       .primary {
@@ -292,7 +366,8 @@
       @media (max-width: 900px) {
         .shell,
         .grid,
-        .cards {
+        .cards,
+        .mode-strip {
           grid-template-columns: 1fr;
         }
 
@@ -343,13 +418,55 @@
           </article>
         </section>
 
+        <section class="mode-strip" aria-label="Theme and density modes">
+          <div class="mode" style="background: #f8fafc; color: #0f172a">
+            Light theme
+            <span>theme.light.color.surface.canvas</span>
+          </div>
+          <div class="mode" style="background: #0b1120; color: #f8fafc">
+            Dark theme
+            <span>theme.dark.color.surface.canvas</span>
+          </div>
+          <div class="mode" style="background: #000000; color: #fde68a">
+            High contrast
+            <span>theme.highContrast.color.text.secondary</span>
+          </div>
+        </section>
+
         <section class="grid">
           <article class="panel">
             <h2>Risk signals</h2>
+            <div class="chart" role="img" aria-label="High risk invoices increased this week">
+              <span class="bar" style="height: 44%; background: var(--color-action-primary)"></span>
+              <span class="bar" style="height: 64%; background: var(--color-status-success)"></span>
+              <span class="bar" style="height: 78%; background: var(--color-status-warning)"></span>
+              <span class="bar" style="height: 92%; background: var(--color-status-danger)"></span>
+            </div>
             <div class="alert">
               <strong>3 invoices are overdue</strong>
               Review payment history before changing account status.
             </div>
+            <table aria-label="Invoice risk records">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Age</th>
+                  <th>Risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>INV-1042</td>
+                  <td>28 days</td>
+                  <td><span class="badge">High risk</span></td>
+                </tr>
+                <tr>
+                  <td>INV-1038</td>
+                  <td>14 days</td>
+                  <td><span class="badge" style="background: var(--color-surface-warning); color: #7c4a03">Medium risk</span></td>
+                </tr>
+              </tbody>
+            </table>
             <div class="row">
               <div>
                 <strong>Invoice INV-1042</strong><br />
@@ -396,4 +513,3 @@
     </div>
   </body>
 </html>
-

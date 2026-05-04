@@ -1,0 +1,100 @@
+{
+  "id": "component:theme-provider",
+  "type": "component",
+  "name": "ThemeProvider",
+  "summary": "Theme and density boundary for deterministic web, iOS, and Android surface mapping.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/theme-provider",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides theme, density, and platform token context."
+    }
+  ],
+  "importGuidance": {
+    "named": ["ThemeProvider"],
+    "sideEffects": [],
+    "notes": ["Wrap generated application surfaces in ThemeProvider when theme or density is relevant."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/theme-provider",
+      "component": "ThemeProvider",
+      "tokens": {
+        "lightCanvas": "token:theme.light.color.surface.canvas",
+        "darkCanvas": "token:theme.dark.color.surface.canvas",
+        "highContrastCanvas": "token:theme.highContrast.color.surface.canvas",
+        "webFont": "token:platform.web.font.body"
+      },
+      "props": {
+        "theme": "light",
+        "density": "comfortable"
+      },
+      "notes": ["ThemeProvider is required for multi-theme deterministic handoff demos."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["theme", "density", "platform"],
+  "props": [
+    {
+      "name": "theme",
+      "type": "\"light\" | \"dark\" | \"highContrast\"",
+      "required": true,
+      "values": ["light", "dark", "highContrast"],
+      "description": "Active visual theme."
+    },
+    {
+      "name": "density",
+      "type": "\"compact\" | \"comfortable\"",
+      "required": true,
+      "values": ["compact", "comfortable"],
+      "description": "Active layout density."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Light comfortable app shell",
+      "language": "tsx",
+      "code": "import { ThemeProvider } from \"@atlas/ui/theme-provider\";\n\n<ThemeProvider theme=\"light\" density=\"comfortable\">...</ThemeProvider>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "theme-density-explicit",
+      "severity": "error",
+      "message": "Generated app shells must declare both theme and density."
+    }
+  ],
+  "tokens": [
+    "token:theme.light.color.surface.canvas",
+    "token:theme.light.color.surface.raised",
+    "token:theme.light.color.surface.overlay",
+    "token:theme.light.color.text.primary",
+    "token:theme.light.color.text.secondary",
+    "token:theme.dark.color.surface.canvas",
+    "token:theme.dark.color.surface.raised",
+    "token:theme.dark.color.surface.overlay",
+    "token:theme.dark.color.text.primary",
+    "token:theme.dark.color.text.secondary",
+    "token:theme.highContrast.color.surface.canvas",
+    "token:theme.highContrast.color.surface.raised",
+    "token:theme.highContrast.color.surface.overlay",
+    "token:theme.highContrast.color.text.primary",
+    "token:theme.highContrast.color.text.secondary",
+    "token:platform.web.font.body",
+    "token:platform.web.layout.pageMaxWidth",
+    "token:platform.ios.font.body",
+    "token:platform.ios.radius.control",
+    "token:platform.android.font.body",
+    "token:platform.android.radius.control"
+  ],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:risk-dashboard"],
+  "related": []
+}
+

@@ -1,0 +1,12 @@
+{
+  "id": "no-raw-z-index",
+  "description": "Stacking layers must use layer tokens.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx", "ts", "js", "css"],
+  "detector": {
+    "type": "regex",
+    "pattern": "\\bzIndex\\s*[:=]\\s*\\d+|\\bz-index\\s*:\\s*\\d+",
+    "message": "Raw z-index value {match} is not allowed. Use token:layer.*."
+  }
+}
+

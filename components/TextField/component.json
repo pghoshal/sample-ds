@@ -27,7 +27,10 @@
       "component": "TextField",
       "tokens": {
         "height": "token:component.input.height",
-        "radius": "token:component.input.radius"
+        "compactHeight": "token:density.compact.control.height",
+        "comfortableHeight": "token:density.comfortable.control.height",
+        "radius": "token:component.input.radius",
+        "focusRing": "token:state.action.primary.focusRing"
       },
       "props": {
         "intent": "search"
@@ -66,8 +69,15 @@
       "message": "Text fields must have visible labels."
     }
   ],
-  "tokens": ["token:component.input.height", "token:component.input.radius"],
+  "tokens": [
+    "token:component.input.height",
+    "token:component.input.radius",
+    "token:density.compact.control.height",
+    "token:density.comfortable.control.height",
+    "token:density.comfortable.control.gap",
+    "token:state.action.primary.focusRing"
+  ],
   "principles": ["principle:accessibility-first"],
-  "patterns": ["pattern:billing-risk-review"],
+  "patterns": ["pattern:billing-risk-review", "pattern:risk-dashboard"],
   "related": []
 }

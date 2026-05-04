@@ -1,0 +1,81 @@
+{
+  "id": "component:badge",
+  "type": "component",
+  "name": "Badge",
+  "summary": "Compact semantic label for status, risk, and account state.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/badge",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Badge implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Badge"],
+    "sideEffects": [],
+    "notes": ["Use Badge for short state labels; pair color with text, never color alone."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/badge",
+      "component": "Badge",
+      "tokens": {
+        "success": "token:color.status.success",
+        "warning": "token:color.status.warning",
+        "danger": "token:color.status.danger",
+        "compactGap": "token:density.compact.control.gap"
+      },
+      "props": {
+        "tone": "warning"
+      },
+      "notes": ["For risk, use tone values low=success, medium=warning, high=danger."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["status", "risk", "badge"],
+  "props": [
+    {
+      "name": "tone",
+      "type": "\"neutral\" | \"success\" | \"warning\" | \"danger\"",
+      "required": true,
+      "values": ["neutral", "success", "warning", "danger"],
+      "description": "Semantic status tone."
+    },
+    {
+      "name": "children",
+      "type": "string",
+      "required": true,
+      "description": "Visible status text."
+    }
+  ],
+  "examples": [
+    {
+      "name": "High risk badge",
+      "language": "tsx",
+      "code": "import { Badge } from \"@atlas/ui/badge\";\n\n<Badge tone=\"danger\">High risk</Badge>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "status-text-required",
+      "severity": "error",
+      "message": "Badges must include visible status text; color alone is not sufficient."
+    }
+  ],
+  "tokens": [
+    "token:color.status.success",
+    "token:color.status.warning",
+    "token:color.status.danger",
+    "token:density.compact.control.gap"
+  ],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:risk-dashboard"],
+  "related": []
+}
+

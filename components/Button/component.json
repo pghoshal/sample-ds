@@ -28,8 +28,12 @@
       "tokens": {
         "background": "token:color.action.primary",
         "dangerBackground": "token:color.action.danger",
+        "primaryHover": "token:state.action.primary.hover",
+        "dangerHover": "token:state.action.danger.hover",
+        "focusRing": "token:state.action.primary.focusRing",
         "height": "token:component.button.height",
-        "radius": "token:component.button.radius"
+        "radius": "token:component.button.radius",
+        "motion": "token:motion.duration.fast"
       },
       "props": {
         "variant": "primary",
@@ -80,11 +84,19 @@
   "tokens": [
     "token:color.action.primary",
     "token:color.action.danger",
+    "token:state.action.primary.default",
+    "token:state.action.primary.hover",
+    "token:state.action.primary.focusRing",
+    "token:state.action.primary.disabled",
+    "token:state.action.danger.default",
+    "token:state.action.danger.hover",
+    "token:state.action.danger.focusRing",
     "token:component.button.height",
-    "token:component.button.radius"
+    "token:component.button.radius",
+    "token:motion.duration.fast",
+    "token:motion.easing.standard"
   ],
   "principles": ["principle:clarity", "principle:accessibility-first"],
-  "patterns": ["pattern:billing-risk-review", "pattern:destructive-confirmation"],
+  "patterns": ["pattern:billing-risk-review", "pattern:destructive-confirmation", "pattern:risk-dashboard"],
   "related": ["component:legacy-button"]
 }
-

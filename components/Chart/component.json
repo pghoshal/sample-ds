@@ -1,0 +1,85 @@
+{
+  "id": "component:chart",
+  "type": "component",
+  "name": "Chart",
+  "summary": "Accessible data visualization container using approved data-viz tokens.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/chart",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Chart implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Chart"],
+    "sideEffects": [],
+    "notes": ["Use dataviz tokens for all series colors and provide a text summary."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/chart",
+      "component": "Chart",
+      "tokens": {
+        "series1": "token:dataviz.categorical.one",
+        "series2": "token:dataviz.categorical.two",
+        "riskHigh": "token:dataviz.risk.high",
+        "axis": "token:dataviz.axis"
+      },
+      "props": {
+        "kind": "bar"
+      },
+      "notes": ["Charts must include summary text for screen-reader users."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["data-viz", "chart", "analytics", "risk"],
+  "props": [
+    {
+      "name": "kind",
+      "type": "\"bar\" | \"line\" | \"donut\"",
+      "required": true,
+      "values": ["bar", "line", "donut"],
+      "description": "Chart visualization type."
+    },
+    {
+      "name": "summary",
+      "type": "string",
+      "required": true,
+      "description": "Plain-language summary of the chart."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Risk trend chart",
+      "language": "tsx",
+      "code": "import { Chart } from \"@atlas/ui/chart\";\n\n<Chart kind=\"bar\" summary=\"High risk invoices increased this week.\" />"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "chart-summary-required",
+      "severity": "error",
+      "message": "Charts must provide a text summary of the data insight."
+    }
+  ],
+  "tokens": [
+    "token:dataviz.categorical.one",
+    "token:dataviz.categorical.two",
+    "token:dataviz.categorical.three",
+    "token:dataviz.categorical.four",
+    "token:dataviz.risk.low",
+    "token:dataviz.risk.medium",
+    "token:dataviz.risk.high",
+    "token:dataviz.axis"
+  ],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:risk-dashboard"],
+  "related": []
+}
+

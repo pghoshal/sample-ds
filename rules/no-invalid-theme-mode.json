@@ -1,0 +1,14 @@
+{
+  "id": "no-invalid-theme-mode",
+  "description": "Theme mode must be light, dark, or highContrast.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx"],
+  "detector": {
+    "type": "jsx-prop-value",
+    "component": "ThemeProvider",
+    "prop": "theme",
+    "disallow": ["system", "brand", "auto", "hc"],
+    "message": "Theme mode '{value}' is not supported. Use light, dark, or highContrast."
+  }
+}
+

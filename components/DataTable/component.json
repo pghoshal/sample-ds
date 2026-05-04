@@ -1,0 +1,93 @@
+{
+  "id": "component:data-table",
+  "type": "component",
+  "name": "DataTable",
+  "summary": "Accessible enterprise table for dense account, invoice, and risk records.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/data-table",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public DataTable implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["DataTable"],
+    "sideEffects": [],
+    "notes": ["Use DataTable for sortable records; provide ariaLabel and explicit columns."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/data-table",
+      "component": "DataTable",
+      "tokens": {
+        "surface": "token:color.surface.raised",
+        "headerSurface": "token:color.surface.muted",
+        "stickyLayer": "token:layer.sticky",
+        "compactHeight": "token:density.compact.control.height",
+        "focusRing": "token:state.action.primary.focusRing"
+      },
+      "props": {
+        "density": "compact",
+        "sortable": true
+      },
+      "notes": ["Use density=\"compact\" only for data-heavy operational pages."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["data", "table", "billing", "risk"],
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "required": true,
+      "description": "Accessible table label."
+    },
+    {
+      "name": "density",
+      "type": "\"compact\" | \"comfortable\"",
+      "required": true,
+      "values": ["compact", "comfortable"],
+      "description": "Row density."
+    },
+    {
+      "name": "sortable",
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Whether column headers expose sort controls."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Invoice risk table",
+      "language": "tsx",
+      "code": "import { DataTable } from \"@atlas/ui/data-table\";\n\n<DataTable ariaLabel=\"Invoice risk records\" density=\"compact\" sortable />"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "table-accessible-label",
+      "severity": "error",
+      "message": "DataTable requires an ariaLabel that names the record set."
+    }
+  ],
+  "tokens": [
+    "token:color.surface.raised",
+    "token:color.surface.muted",
+    "token:layer.sticky",
+    "token:density.compact.control.height",
+    "token:density.compact.control.gap",
+    "token:state.action.primary.focusRing",
+    "token:breakpoint.md"
+  ],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:risk-dashboard", "pattern:billing-risk-review"],
+  "related": []
+}
+

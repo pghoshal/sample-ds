@@ -1,0 +1,49 @@
+{
+  "dataviz": {
+    "categorical": {
+      "one": {
+        "$value": "{color.blue.500}",
+        "$type": "color",
+        "$description": "Primary categorical data color."
+      },
+      "two": {
+        "$value": "{color.green.600}",
+        "$type": "color",
+        "$description": "Secondary categorical data color."
+      },
+      "three": {
+        "$value": "{color.amber.600}",
+        "$type": "color",
+        "$description": "Tertiary categorical data color."
+      },
+      "four": {
+        "$value": "{color.red.600}",
+        "$type": "color",
+        "$description": "Quaternary categorical data color."
+      }
+    },
+    "risk": {
+      "low": {
+        "$value": "{color.green.600}",
+        "$type": "color",
+        "$description": "Low risk data visualization color."
+      },
+      "medium": {
+        "$value": "{color.amber.600}",
+        "$type": "color",
+        "$description": "Medium risk data visualization color."
+      },
+      "high": {
+        "$value": "{color.red.600}",
+        "$type": "color",
+        "$description": "High risk data visualization color."
+      }
+    },
+    "axis": {
+      "$value": "{color.text.secondary}",
+      "$type": "color",
+      "$description": "Chart axis and secondary labels."
+    }
+  }
+}
+
