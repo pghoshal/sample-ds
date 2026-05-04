@@ -6,8 +6,7 @@
   "detector": {
     "type": "jsx-prop-value",
     "prop": "density",
-    "disallow": ["spacious", "dense", "default"],
+    "allow": ["compact", "comfortable"],
     "message": "Density '{value}' is not supported. Use compact or comfortable."
   }
 }
-

@@ -7,8 +7,7 @@
     "type": "jsx-prop-value",
     "component": "ThemeProvider",
     "prop": "theme",
-    "disallow": ["system", "brand", "auto", "hc"],
+    "allow": ["light", "dark", "highContrast"],
     "message": "Theme mode '{value}' is not supported. Use light, dark, or highContrast."
   }
 }
-

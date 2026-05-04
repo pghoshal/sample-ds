@@ -36,6 +36,36 @@
         "density": "comfortable"
       },
       "notes": ["ThemeProvider is required for multi-theme deterministic handoff demos."]
+    },
+    {
+      "platform": "ios",
+      "framework": "swiftui",
+      "package": "@atlas/ios-ui",
+      "component": "AtlasThemeProvider",
+      "tokens": {
+        "font": "token:platform.ios.font.body",
+        "controlRadius": "token:platform.ios.radius.control"
+      },
+      "props": {
+        "theme": "light",
+        "density": "comfortable"
+      },
+      "notes": ["iOS mappings stay in the iOS platform mapping, not web recommendations."]
+    },
+    {
+      "platform": "android",
+      "framework": "jetpack-compose",
+      "package": "@atlas/android-ui",
+      "component": "AtlasThemeProvider",
+      "tokens": {
+        "font": "token:platform.android.font.body",
+        "controlRadius": "token:platform.android.radius.control"
+      },
+      "props": {
+        "theme": "light",
+        "density": "comfortable"
+      },
+      "notes": ["Android mappings stay in the Android platform mapping, not web recommendations."]
     }
   ],
   "status": "stable",
@@ -87,14 +117,9 @@
     "token:theme.highContrast.color.text.primary",
     "token:theme.highContrast.color.text.secondary",
     "token:platform.web.font.body",
-    "token:platform.web.layout.pageMaxWidth",
-    "token:platform.ios.font.body",
-    "token:platform.ios.radius.control",
-    "token:platform.android.font.body",
-    "token:platform.android.radius.control"
+    "token:platform.web.layout.pageMaxWidth"
   ],
   "principles": ["principle:clarity", "principle:accessibility-first"],
   "patterns": ["pattern:risk-dashboard"],
   "related": []
 }
-

@@ -7,8 +7,7 @@
     "type": "jsx-prop-value",
     "component": "Button",
     "prop": "variant",
-    "disallow": ["ghost", "link", "tertiary"],
+    "allow": ["primary", "secondary", "danger"],
     "message": "Button variant '{value}' is not in the Atlas design system."
   }
 }
-

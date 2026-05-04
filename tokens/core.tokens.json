@@ -4,39 +4,39 @@
       "50": {
         "$value": "#EEF6FF",
         "$type": "color",
-        "$description": "Cool blue canvas tint."
+        "$description": "Blue palette 50 primitive."
       },
       "500": {
         "$value": "#185ADB",
         "$type": "color",
-        "$description": "Atlas primary action blue."
+        "$description": "Blue palette 500 primitive."
       },
       "700": {
         "$value": "#0B3A91",
         "$type": "color",
-        "$description": "Primary hover and active blue."
+        "$description": "Blue palette 700 primitive."
       }
     },
     "slate": {
       "50": {
         "$value": "#F8FAFC",
         "$type": "color",
-        "$description": "Default app background."
+        "$description": "Slate palette 50 primitive."
       },
       "100": {
         "$value": "#EEF2F7",
         "$type": "color",
-        "$description": "Subtle raised surface."
+        "$description": "Slate palette 100 primitive."
       },
       "700": {
         "$value": "#334155",
         "$type": "color",
-        "$description": "Secondary text."
+        "$description": "Slate palette 700 primitive."
       },
       "900": {
         "$value": "#0F172A",
         "$type": "color",
-        "$description": "Primary text."
+        "$description": "Slate palette 900 primitive."
       }
     },
     "red": {
@@ -196,4 +196,3 @@
     }
   }
 }
-

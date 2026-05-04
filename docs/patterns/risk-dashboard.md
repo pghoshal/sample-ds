@@ -6,6 +6,7 @@ summary: Multi-theme dashboard pattern for dense risk analytics, records, and go
 tags: [pattern, dashboard, analytics, data-viz, enterprise, theme, density]
 related:
   - component:theme-provider
+  - component:text-field
   - component:data-table
   - component:chart
   - component:badge
@@ -16,6 +17,7 @@ related:
 contract:
   requiredComponents:
     - component:theme-provider
+    - component:text-field
     - component:data-table
     - component:chart
     - component:badge
@@ -91,6 +93,10 @@ contract:
       required: true
       component: component:theme-provider
       description: Provides theme and density context.
+    - name: search-filter
+      required: true
+      component: component:text-field
+      description: Search or filter field for enterprise risk records.
     - name: trend-visualization
       required: true
       component: component:chart
@@ -125,4 +131,3 @@ Use this pattern for a governed analytics page that combines status summaries, c
 - Do not hard-code chart colors.
 - Do not use primitive `color.blue.*` tokens directly in product UI.
 - Do not omit chart summary text or table accessible labels.
-

@@ -7,8 +7,7 @@
     "type": "jsx-prop-value",
     "component": "Chart",
     "prop": "kind",
-    "disallow": ["area", "scatter", "heatmap", "pie"],
+    "allow": ["bar", "line", "donut"],
     "message": "Chart kind '{value}' is not in the Atlas design system."
   }
 }
-

@@ -4,12 +4,12 @@
       "canvas": {
         "$value": "{color.slate.50}",
         "$type": "color",
-        "$description": "Default page canvas."
+        "$description": "Use this semantic token for app background, page canvas, and default product surfaces."
       },
       "raised": {
         "$value": "{color.white}",
         "$type": "color",
-        "$description": "Card and modal surface."
+        "$description": "Use this semantic token for cards, panels, modals, and raised product surfaces."
       },
       "muted": {
         "$value": "{color.slate.100}",
@@ -31,7 +31,7 @@
       "primary": {
         "$value": "{color.slate.900}",
         "$type": "color",
-        "$description": "Primary readable text."
+        "$description": "Use this semantic token for primary readable product text."
       },
       "secondary": {
         "$value": "{color.slate.700}",
@@ -130,4 +130,3 @@
     }
   }
 }
-

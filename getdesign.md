@@ -5,21 +5,32 @@ title: Community handoff compatibility
 summary: A getdesign-style Markdown handoff with token frontmatter and prose guidance.
 tags: [community, markdown, handoff, tokens]
 colors:
-  accent: "#185ADB"
-  success: "#059669"
+  community-primary-compat:
+    value: "#185ADB"
+    type: color
+    description: Compatibility-only community alias. Prefer token:color.action.primary.
+    deprecated: Use token:color.action.primary in enterprise UI.
+    replacement: token:color.action.primary
+  community-success-compat:
+    value: "#059669"
+    type: color
+    description: Compatibility-only community alias. Prefer token:color.status.success.
+    deprecated: Use token:color.status.success in enterprise UI.
+    replacement: token:color.status.success
 spacing:
-  page: 48px
-  panel: 24px
+  community-page-compat:
+    value: 48px
+    type: dimension
+    description: Compatibility-only community spacing alias. Prefer token:space.12.
+    deprecated: Use token:space.12 in enterprise UI.
+    replacement: token:space.12
 rounded:
-  control: 8px
-typography:
-  dashboard-title:
-    fontFamily: "Inter, Arial, sans-serif"
-    fontSize: 28px
-components:
-  metric-card:
-    backgroundColor: "{colors.accent}"
-    textColor: "#ffffff"
+  community-control-compat:
+    value: 8px
+    type: dimension
+    description: Compatibility-only community radius alias. Prefer token:component.button.radius.
+    deprecated: Use token:component.button.radius in enterprise UI.
+    replacement: token:component.button.radius
 related:
   - token:color.action.primary
   - component:card
@@ -40,4 +51,3 @@ This root Markdown file simulates teams that publish their design system as a si
 - Do not use raw hex colors in application code.
 - Do not invent button variants outside the component API.
 - Do not use vague labels like Submit for critical financial actions.
-

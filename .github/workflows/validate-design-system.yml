@@ -6,12 +6,111 @@ on:
     branches: [main]
 
 jobs:
-  validate-json:
+  validate-corpus:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: sample-ds
+      - uses: actions/checkout@v4
+        with:
+          repository: pghoshal/design-system-mcp
+          path: design-system-mcp
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node -e "for (const f of ['manifest.json','tokens/core.tokens.json','tokens/semantic.tokens.json']) JSON.parse(require('fs').readFileSync(f,'utf8'))"
-
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.0 --activate
+      - name: Parse every JSON file
+        working-directory: sample-ds
+        run: |
+          node - <<'NODE'
+          const { readdirSync, readFileSync, statSync } = require('node:fs');
+          const { join } = require('node:path');
+          function walk(dir) {
+            for (const name of readdirSync(dir)) {
+              if (name === '.git') continue;
+              const file = join(dir, name);
+              if (statSync(file).isDirectory()) walk(file);
+              else if (file.endsWith('.json')) JSON.parse(readFileSync(file, 'utf8'));
+            }
+          }
+          walk('.');
+          NODE
+      - name: Install MCP validator
+        working-directory: design-system-mcp
+        run: pnpm install --frozen-lockfile
+      - name: Build MCP validator
+        working-directory: design-system-mcp
+        run: pnpm build
+      - name: Enterprise corpus smoke
+        working-directory: design-system-mcp
+        run: |
+          node --input-type=module <<'NODE'
+          import { buildBundle } from './dist/bundle/builder.js';
+          import { createLogger } from './dist/observability/logger.js';
+          import { handler as inspectCoverage } from './dist/tools/inspect-coverage.js';
+          import { handler as recommendComposition } from './dist/tools/recommend-composition.js';
+          import { handler as validateComposition } from './dist/tools/validate-composition.js';
+          import { handler as validateUi } from './dist/tools/validate-ui.js';
+          const sourcePath = '../sample-ds';
+          const logger = createLogger({ LOG_LEVEL: 'warn', DS_MCP_MODE: 'http' });
+          const bundle = await buildBundle({ sourcePath, logger });
+          const ctx = { requestId: 'ci', logger, source: { current: () => bundle }, cache: { get: () => undefined, set: () => undefined } };
+          const coverage = await inspectCoverage.handle({ profile: 'enterprise', include_warnings: false }, ctx);
+          if (!coverage.ok) throw new Error(`coverage failed: ${JSON.stringify(coverage.issues)}`);
+          const recommendation = await recommendComposition.handle({
+            intent: 'Build an enterprise risk dashboard with charts table theme density and billing actions',
+            platform: 'web',
+            framework: 'react',
+            limit: 12
+          }, ctx);
+          const recommendedTokenIds = [
+            ...recommendation.recommended.tokens.map((token) => token.id),
+            ...recommendation.alternatives.tokens.map((token) => token.id)
+          ];
+          const leaked = recommendedTokenIds.filter((id) => id.startsWith('token:platform.ios.') || id.startsWith('token:platform.android.'));
+          if (leaked.length > 0) throw new Error(`web recommendation leaked mobile platform tokens: ${leaked.join(', ')}`);
+          const composition = await validateComposition.handle({
+            pattern: 'pattern:risk-dashboard',
+            platform: 'web',
+            framework: 'react',
+            tokens: [
+              'token:theme.light.color.surface.canvas',
+              'token:theme.dark.color.surface.canvas',
+              'token:theme.highContrast.color.surface.canvas',
+              'token:density.compact.control.height',
+              'token:density.comfortable.card.padding',
+              'token:dataviz.risk.high',
+              'token:dataviz.axis',
+              'token:motion.duration.normal',
+              'token:elevation.card',
+              'token:layer.sticky',
+              'token:platform.web.layout.pageMaxWidth',
+              'token:breakpoint.md',
+              'token:platform.web.font.body'
+            ],
+            components: [
+              { id: 'component:theme-provider', props: { theme: 'light', density: 'compact' } },
+              { id: 'component:text-field', props: { label: 'Search accounts', intent: 'search' } },
+              { id: 'component:card', props: { title: 'Invoice risk', tone: 'warning' } },
+              { id: 'component:chart', props: { kind: 'bar', summary: 'High risk invoices increased this week.' } },
+              { id: 'component:data-table', props: { ariaLabel: 'Invoice risk records', density: 'compact', sortable: true } },
+              { id: 'component:badge', props: { tone: 'danger', children: 'High risk' } },
+              { id: 'component:button', props: { variant: 'primary', size: 'md', children: 'Review invoices' } }
+            ]
+          }, ctx);
+          if (!composition.ok) throw new Error(`composition failed: ${JSON.stringify(composition.violations)}`);
+          const badUi = await validateUi.handle({
+            language: 'tsx',
+            rules: [],
+            code: '<ThemeProvider theme="sepia" density="tight"><Chart kind="radar" /><Button variant="outline">Submit</Button><div style={{ color: "var(--color-blue-500)", transition: "all 200ms", zIndex: 999 }} /></ThemeProvider>'
+          }, ctx);
+          for (const required of ['no-invalid-theme-mode', 'no-density-spacious', 'no-chart-invalid-kind', 'no-button-ghost-variant', 'no-primitive-color-css-vars', 'no-raw-motion-values', 'no-raw-z-index']) {
+            if (!badUi.violations.some((v) => v.ruleId === required)) {
+              throw new Error(`expected violation ${required}; got ${JSON.stringify(badUi.violations)}`);
+            }
+          }
+          NODE
