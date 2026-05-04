@@ -40,6 +40,41 @@
         "size": "md"
       },
       "notes": ["Use a specific verb plus object in labels."]
+    },
+    {
+      "platform": "react-native",
+      "framework": "react-native",
+      "package": "@atlas/react-native-ui",
+      "importPath": "@atlas/react-native-ui/button",
+      "component": "Button",
+      "tokens": {
+        "background": "token:color.action.primary",
+        "dangerBackground": "token:color.action.danger",
+        "radius": "token:platform.reactNative.radius.control",
+        "motion": "token:platform.reactNative.motion.normal"
+      },
+      "props": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "notes": ["Import the existing React Native Button; do not recreate it with Pressable unless the package is unavailable."]
+    },
+    {
+      "platform": "flutter",
+      "framework": "flutter",
+      "package": "atlas_ui",
+      "component": "AtlasButton",
+      "tokens": {
+        "background": "token:color.action.primary",
+        "dangerBackground": "token:color.action.danger",
+        "radius": "token:platform.flutter.radius.control",
+        "motion": "token:platform.flutter.motion.normal"
+      },
+      "props": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "notes": ["Use AtlasButton from atlas_ui; do not hand-build a Material button replacement."]
     }
   ],
   "status": "stable",

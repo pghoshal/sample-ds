@@ -61,18 +61,28 @@ jobs:
           const ctx = { requestId: 'ci', logger, source: { current: () => bundle }, cache: { get: () => undefined, set: () => undefined } };
           const coverage = await inspectCoverage.handle({ profile: 'enterprise', include_warnings: false }, ctx);
           if (!coverage.ok) throw new Error(`coverage failed: ${JSON.stringify(coverage.issues)}`);
-          const recommendation = await recommendComposition.handle({
-            intent: 'Build an enterprise risk dashboard with charts table theme density and billing actions',
-            platform: 'web',
-            framework: 'react',
-            limit: 12
-          }, ctx);
-          const recommendedTokenIds = [
-            ...recommendation.recommended.tokens.map((token) => token.id),
-            ...recommendation.alternatives.tokens.map((token) => token.id)
-          ];
-          const leaked = recommendedTokenIds.filter((id) => id.startsWith('token:platform.ios.') || id.startsWith('token:platform.android.'));
-          if (leaked.length > 0) throw new Error(`web recommendation leaked mobile platform tokens: ${leaked.join(', ')}`);
+          for (const platformCase of [
+            { platform: 'web', framework: 'react', allowedPrefix: 'token:platform.web.' },
+            { platform: 'ios', framework: 'swiftui', allowedPrefix: 'token:platform.ios.' },
+            { platform: 'android', framework: 'jetpack-compose', allowedPrefix: 'token:platform.android.' },
+            { platform: 'react-native', framework: 'react-native', allowedPrefix: 'token:platform.reactNative.' },
+            { platform: 'flutter', framework: 'flutter', allowedPrefix: 'token:platform.flutter.' }
+          ]) {
+            const recommendation = await recommendComposition.handle({
+              intent: 'Build an enterprise risk dashboard with charts table theme density and billing actions',
+              platform: platformCase.platform,
+              framework: platformCase.framework,
+              limit: 12
+            }, ctx);
+            const recommendedTokenIds = [
+              ...recommendation.recommended.tokens.map((token) => token.id),
+              ...recommendation.alternatives.tokens.map((token) => token.id)
+            ];
+            const leaked = recommendedTokenIds.filter((id) => id.startsWith('token:platform.') && !id.startsWith(platformCase.allowedPrefix));
+            if (leaked.length > 0) {
+              throw new Error(`${platformCase.platform} recommendation leaked other platform tokens: ${leaked.join(', ')}`);
+            }
+          }
           const composition = await validateComposition.handle({
             pattern: 'pattern:risk-dashboard',
             platform: 'web',

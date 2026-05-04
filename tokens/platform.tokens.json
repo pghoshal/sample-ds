@@ -47,7 +47,52 @@
           "$description": "Android control radius mapping."
         }
       }
+    },
+    "reactNative": {
+      "font": {
+        "body": {
+          "$value": "System",
+          "$type": "fontFamily",
+          "$description": "React Native body font mapping."
+        }
+      },
+      "radius": {
+        "control": {
+          "$value": "8px",
+          "$type": "dimension",
+          "$description": "React Native control radius mapping."
+        }
+      },
+      "motion": {
+        "normal": {
+          "$value": "{motion.duration.normal}",
+          "$type": "duration",
+          "$description": "React Native default motion duration."
+        }
+      }
+    },
+    "flutter": {
+      "font": {
+        "body": {
+          "$value": "Roboto",
+          "$type": "fontFamily",
+          "$description": "Flutter body font mapping."
+        }
+      },
+      "radius": {
+        "control": {
+          "$value": "8px",
+          "$type": "dimension",
+          "$description": "Flutter control radius mapping."
+        }
+      },
+      "motion": {
+        "normal": {
+          "$value": "{motion.duration.normal}",
+          "$type": "duration",
+          "$description": "Flutter default motion duration."
+        }
+      }
     }
   }
 }
-

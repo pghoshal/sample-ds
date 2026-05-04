@@ -53,6 +53,7 @@ This intent should involve:
 - `component:badge`
 - semantic color, spacing, typography, radius, and shadow tokens
 - multi-theme, density, state, data-viz, motion, elevation, layer, breakpoint, and platform tokens
+- platform mappings for web, iOS, Android, React Native, and Flutter
 
 ## Negative Validation Ideas
 

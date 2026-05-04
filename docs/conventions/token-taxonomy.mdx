@@ -29,6 +29,7 @@ Generated UI must select tokens by semantic role first, then by mode or platform
 - Use `dataviz.*` tokens for charts and risk visualizations.
 - Use `motion.*`, `elevation.*`, and `layer.*` tokens instead of raw CSS values.
 - Use `platform.*` aliases when generating platform-specific code.
+- Use `platform.reactNative.*` for React Native and `platform.flutter.*` for Flutter; do not reuse web CSS aliases in native code.
 
 ## Do not
 
@@ -41,4 +42,3 @@ Generated UI must select tokens by semantic role first, then by mode or platform
 - High contrast theme tokens must preserve text/background contrast.
 - Chart colors must be accompanied by text labels or summaries.
 - Focus ring tokens are required for keyboard-interactive components.
-

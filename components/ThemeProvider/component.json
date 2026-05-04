@@ -66,6 +66,38 @@
         "density": "comfortable"
       },
       "notes": ["Android mappings stay in the Android platform mapping, not web recommendations."]
+    },
+    {
+      "platform": "react-native",
+      "framework": "react-native",
+      "package": "@atlas/react-native-ui",
+      "component": "AtlasThemeProvider",
+      "tokens": {
+        "font": "token:platform.reactNative.font.body",
+        "controlRadius": "token:platform.reactNative.radius.control",
+        "motion": "token:platform.reactNative.motion.normal"
+      },
+      "props": {
+        "theme": "light",
+        "density": "comfortable"
+      },
+      "notes": ["React Native mappings stay in the React Native platform mapping."]
+    },
+    {
+      "platform": "flutter",
+      "framework": "flutter",
+      "package": "atlas_ui",
+      "component": "AtlasThemeProvider",
+      "tokens": {
+        "font": "token:platform.flutter.font.body",
+        "controlRadius": "token:platform.flutter.radius.control",
+        "motion": "token:platform.flutter.motion.normal"
+      },
+      "props": {
+        "theme": "light",
+        "density": "comfortable"
+      },
+      "notes": ["Flutter mappings stay in the Flutter platform mapping."]
     }
   ],
   "status": "stable",

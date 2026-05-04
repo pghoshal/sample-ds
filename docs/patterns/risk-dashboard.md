@@ -39,7 +39,6 @@ contract:
     - token:motion.duration.normal
     - token:elevation.card
     - token:layer.sticky
-    - token:platform.web.layout.pageMaxWidth
   requiredPrinciples:
     - principle:clarity
     - principle:accessibility-first
@@ -88,6 +87,28 @@ contract:
         - token:platform.web.font.body
         - token:platform.web.layout.pageMaxWidth
         - token:breakpoint.md
+    - platform: react-native
+      framework: react-native
+      requiredComponents:
+        - component:theme-provider
+        - component:data-table
+      forbiddenComponents:
+        - component:legacy-button
+      requiredTokens:
+        - token:platform.reactNative.font.body
+        - token:platform.reactNative.radius.control
+        - token:platform.reactNative.motion.normal
+    - platform: flutter
+      framework: flutter
+      requiredComponents:
+        - component:theme-provider
+        - component:data-table
+      forbiddenComponents:
+        - component:legacy-button
+      requiredTokens:
+        - token:platform.flutter.font.body
+        - token:platform.flutter.radius.control
+        - token:platform.flutter.motion.normal
   slots:
     - name: app-boundary
       required: true
