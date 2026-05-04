@@ -1,0 +1,12 @@
+{
+  "id": "no-raw-hex-colors",
+  "description": "Raw hex colors must use Atlas semantic tokens.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx", "ts", "js", "css", "html"],
+  "detector": {
+    "type": "regex",
+    "pattern": "#[0-9a-fA-F]{3,8}\\b",
+    "message": "Raw hex color {match} is not allowed. Use resolve_token and a semantic CSS variable."
+  }
+}
+

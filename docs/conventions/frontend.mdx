@@ -1,0 +1,32 @@
+---
+id: convention:frontend-implementation
+type: convention
+title: Frontend implementation rules
+summary: Implementation guidance for generated React UI.
+tags: [react, frontend, tokens, validation]
+related:
+  - component:button
+  - component:text-field
+  - token:color.surface.canvas
+---
+
+import { DoDont } from "@atlas/docs";
+
+# Frontend implementation rules
+
+Generated React code must import public components from their documented package entry points and must use CSS custom properties returned by `resolve_token`.
+
+<DoDont doText="Resolve tokens through MCP before writing CSS." dontText="Hard-code primitive values in generated UI." />
+
+## Props
+
+| Name | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| variant | primary, secondary, danger | yes | primary | Visual action intent for `component:button`. |
+| tone | neutral, warning, danger, success | no | neutral | Semantic status tone for `component:alert`. |
+
+## Migration
+
+- Replace `component:legacy-button` with `component:button`.
+- Replace `token:color.action.legacyPrimary` with `token:color.action.primary`.
+

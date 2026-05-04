@@ -1,0 +1,14 @@
+{
+  "id": "no-button-ghost-variant",
+  "description": "Button variant must be one of the documented Atlas variants.",
+  "severity": "error",
+  "appliesTo": ["tsx", "jsx"],
+  "detector": {
+    "type": "jsx-prop-value",
+    "component": "Button",
+    "prop": "variant",
+    "disallow": ["ghost", "link", "tertiary"],
+    "message": "Button variant '{value}' is not in the Atlas design system."
+  }
+}
+

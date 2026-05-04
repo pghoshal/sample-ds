@@ -1,0 +1,12 @@
+{
+  "id": "no-tailwind-utility-colors",
+  "description": "Utility color classes bypass Atlas token resolution.",
+  "severity": "warning",
+  "appliesTo": ["tsx", "jsx", "html"],
+  "detector": {
+    "type": "regex",
+    "pattern": "\\b(?:bg|text|border)-(?:slate|gray|blue|red|amber|green)-[0-9]{2,3}\\b",
+    "message": "Utility color class {match} bypasses Atlas semantic tokens."
+  }
+}
+

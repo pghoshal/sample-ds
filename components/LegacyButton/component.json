@@ -1,0 +1,67 @@
+{
+  "id": "component:legacy-button",
+  "type": "component",
+  "name": "LegacyButton",
+  "summary": "Deprecated control retained only for migration guidance.",
+  "package": "@atlas/legacy-ui",
+  "importPath": "@atlas/legacy-ui/legacy-button",
+  "dependencies": [
+    {
+      "package": "@atlas/legacy-ui",
+      "version": "^1.0.0",
+      "type": "runtime",
+      "reason": "Legacy package kept only so migration examples resolve."
+    }
+  ],
+  "importGuidance": {
+    "named": ["LegacyButton"],
+    "sideEffects": [],
+    "notes": ["Do not import LegacyButton in new generated UI. Use component:button instead."]
+  },
+  "status": "deprecated",
+  "replacedBy": ["component:button"],
+  "migration": {
+    "steps": [
+      "Replace LegacyButton imports with Button imports from @atlas/ui/button.",
+      "Map intent=\"danger\" to variant=\"danger\".",
+      "Replace token:color.action.legacyPrimary with token:color.action.primary."
+    ],
+    "examples": [
+      {
+        "name": "LegacyButton to Button",
+        "language": "tsx",
+        "code": "<Button variant=\"danger\">Suspend account</Button>"
+      }
+    ]
+  },
+  "tags": ["deprecated", "migration"],
+  "props": [
+    {
+      "name": "intent",
+      "type": "\"default\" | \"danger\"",
+      "required": false,
+      "values": ["default", "danger"],
+      "deprecated": true,
+      "replacedBy": "variant",
+      "description": "Deprecated visual intent."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Deprecated danger action",
+      "language": "tsx",
+      "code": "<LegacyButton intent=\"danger\">Suspend account</LegacyButton>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "do-not-use-legacy-button",
+      "severity": "error",
+      "message": "Do not use LegacyButton in generated UI."
+    }
+  ],
+  "tokens": [],
+  "principles": ["principle:clarity"],
+  "patterns": [],
+  "related": ["component:button"]
+}

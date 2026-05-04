@@ -1,0 +1,74 @@
+{
+  "id": "component:alert",
+  "type": "component",
+  "name": "Alert",
+  "summary": "Inline status message for warning, danger, success, and neutral information.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/alert",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Alert implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Alert"],
+    "sideEffects": [],
+    "notes": ["Use Alert near the content or action it explains."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/alert",
+      "component": "Alert",
+      "tokens": {
+        "warningSurface": "token:color.surface.warning",
+        "dangerSurface": "token:color.surface.danger",
+        "warningAccent": "token:color.status.warning"
+      },
+      "props": {
+        "tone": "warning"
+      },
+      "notes": ["Place Alert near the action or status it qualifies."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["status", "message", "accessibility"],
+  "props": [
+    {
+      "name": "tone",
+      "type": "\"neutral\" | \"warning\" | \"danger\" | \"success\"",
+      "required": true,
+      "values": ["neutral", "warning", "danger", "success"],
+      "description": "Semantic status tone."
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "description": "Short alert title."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Overdue invoice warning",
+      "language": "tsx",
+      "code": "import { Alert } from \"@atlas/ui/alert\";\n\n<Alert tone=\"warning\" title=\"3 invoices are overdue\">Review payment history before changing status.</Alert>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "alert-action-proximity",
+      "severity": "warning",
+      "message": "Place alerts near the action or content they qualify."
+    }
+  ],
+  "tokens": ["token:color.surface.warning", "token:color.surface.danger", "token:color.status.warning"],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:billing-risk-review", "pattern:destructive-confirmation"],
+  "related": []
+}

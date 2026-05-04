@@ -1,0 +1,73 @@
+{
+  "id": "component:text-field",
+  "type": "component",
+  "name": "TextField",
+  "summary": "Labeled text input for search, filter, and structured form entry.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/text-field",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public TextField implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["TextField"],
+    "sideEffects": [],
+    "notes": ["Every TextField needs a label or accessible ariaLabel."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/text-field",
+      "component": "TextField",
+      "tokens": {
+        "height": "token:component.input.height",
+        "radius": "token:component.input.radius"
+      },
+      "props": {
+        "intent": "search"
+      },
+      "notes": ["Prefer visible labels over placeholder-only search fields."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["form", "input", "search"],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": true,
+      "description": "Visible field label."
+    },
+    {
+      "name": "intent",
+      "type": "\"search\" | \"text\" | \"currency\"",
+      "required": true,
+      "values": ["search", "text", "currency"],
+      "description": "Input purpose."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Account search",
+      "language": "tsx",
+      "code": "import { TextField } from \"@atlas/ui/text-field\";\n\n<TextField label=\"Search accounts\" intent=\"search\" />"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "visible-label-required",
+      "severity": "error",
+      "message": "Text fields must have visible labels."
+    }
+  ],
+  "tokens": ["token:component.input.height", "token:component.input.radius"],
+  "principles": ["principle:accessibility-first"],
+  "patterns": ["pattern:billing-risk-review"],
+  "related": []
+}

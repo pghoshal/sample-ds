@@ -1,0 +1,199 @@
+{
+  "color": {
+    "blue": {
+      "50": {
+        "$value": "#EEF6FF",
+        "$type": "color",
+        "$description": "Cool blue canvas tint."
+      },
+      "500": {
+        "$value": "#185ADB",
+        "$type": "color",
+        "$description": "Atlas primary action blue."
+      },
+      "700": {
+        "$value": "#0B3A91",
+        "$type": "color",
+        "$description": "Primary hover and active blue."
+      }
+    },
+    "slate": {
+      "50": {
+        "$value": "#F8FAFC",
+        "$type": "color",
+        "$description": "Default app background."
+      },
+      "100": {
+        "$value": "#EEF2F7",
+        "$type": "color",
+        "$description": "Subtle raised surface."
+      },
+      "700": {
+        "$value": "#334155",
+        "$type": "color",
+        "$description": "Secondary text."
+      },
+      "900": {
+        "$value": "#0F172A",
+        "$type": "color",
+        "$description": "Primary text."
+      }
+    },
+    "red": {
+      "50": {
+        "$value": "#FEF2F2",
+        "$type": "color",
+        "$description": "Danger surface."
+      },
+      "600": {
+        "$value": "#DC2626",
+        "$type": "color",
+        "$description": "Destructive action."
+      },
+      "800": {
+        "$value": "#991B1B",
+        "$type": "color",
+        "$description": "Danger text."
+      }
+    },
+    "amber": {
+      "50": {
+        "$value": "#FFFBEB",
+        "$type": "color",
+        "$description": "Warning surface."
+      },
+      "600": {
+        "$value": "#D97706",
+        "$type": "color",
+        "$description": "Warning emphasis."
+      }
+    },
+    "green": {
+      "600": {
+        "$value": "#059669",
+        "$type": "color",
+        "$description": "Positive status."
+      }
+    },
+    "white": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Base white."
+    }
+  },
+  "space": {
+    "0": {
+      "$value": "0px",
+      "$type": "dimension",
+      "$description": "No space."
+    },
+    "2": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Compact inline gap."
+    },
+    "3": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Default control gap."
+    },
+    "4": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Default card padding."
+    },
+    "6": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Section gap."
+    },
+    "8": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Large layout gap."
+    },
+    "12": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Page band gap."
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Small control radius."
+    },
+    "md": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Card and input radius."
+    },
+    "lg": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Modal radius."
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "$value": "Inter, Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Atlas UI sans family."
+      }
+    },
+    "weight": {
+      "regular": {
+        "$value": 400,
+        "$type": "fontWeight",
+        "$description": "Regular text."
+      },
+      "semibold": {
+        "$value": 600,
+        "$type": "fontWeight",
+        "$description": "Emphasized labels."
+      },
+      "bold": {
+        "$value": 700,
+        "$type": "fontWeight",
+        "$description": "Page headings."
+      }
+    },
+    "size": {
+      "sm": {
+        "$value": "14px",
+        "$type": "dimension",
+        "$description": "Small support text."
+      },
+      "md": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "Default body text."
+      },
+      "lg": {
+        "$value": "20px",
+        "$type": "dimension",
+        "$description": "Panel title."
+      },
+      "xl": {
+        "$value": "28px",
+        "$type": "dimension",
+        "$description": "Page heading."
+      }
+    }
+  },
+  "shadow": {
+    "card": {
+      "$value": "0 1px 2px rgba(15, 23, 42, 0.08)",
+      "$type": "shadow",
+      "$description": "Low elevation for operational cards."
+    },
+    "modal": {
+      "$value": "0 24px 48px rgba(15, 23, 42, 0.24)",
+      "$type": "shadow",
+      "$description": "Modal overlay elevation."
+    }
+  }
+}
+

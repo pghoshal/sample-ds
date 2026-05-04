@@ -1,0 +1,74 @@
+{
+  "id": "component:modal",
+  "type": "component",
+  "name": "Modal",
+  "summary": "Focused overlay for confirmation and blocking decisions.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/modal",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Modal implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Modal"],
+    "sideEffects": [],
+    "notes": ["Use role=\"alertdialog\" for destructive confirmations."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/modal",
+      "component": "Modal",
+      "tokens": {
+        "surface": "token:color.surface.raised",
+        "shadow": "token:shadow.modal",
+        "radius": "token:radius.lg"
+      },
+      "props": {
+        "role": "dialog"
+      },
+      "notes": ["Use role alertdialog only for destructive confirmations or urgent blocking decisions."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["overlay", "dialog", "confirmation"],
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "description": "Dialog heading."
+    },
+    {
+      "name": "role",
+      "type": "\"dialog\" | \"alertdialog\"",
+      "required": true,
+      "values": ["dialog", "alertdialog"],
+      "description": "ARIA dialog role."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Destructive confirmation modal",
+      "language": "tsx",
+      "code": "import { Modal } from \"@atlas/ui/modal\";\n\n<Modal title=\"Suspend account\" role=\"alertdialog\">This account will lose access.</Modal>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "modal-title-required",
+      "severity": "error",
+      "message": "Modals must have a specific title."
+    }
+  ],
+  "tokens": ["token:color.surface.raised", "token:shadow.modal", "token:radius.lg"],
+  "principles": ["principle:accessibility-first", "principle:clarity"],
+  "patterns": ["pattern:destructive-confirmation"],
+  "related": []
+}

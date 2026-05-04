@@ -1,0 +1,90 @@
+{
+  "id": "component:button",
+  "type": "component",
+  "name": "Button",
+  "summary": "Action trigger for primary, secondary, and destructive workflow actions.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/button",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Button implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Button"],
+    "sideEffects": [],
+    "notes": ["Import from @atlas/ui/button. Do not deep-import internal button files."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/button",
+      "component": "Button",
+      "tokens": {
+        "background": "token:color.action.primary",
+        "dangerBackground": "token:color.action.danger",
+        "height": "token:component.button.height",
+        "radius": "token:component.button.radius"
+      },
+      "props": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "notes": ["Use a specific verb plus object in labels."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["action", "form", "button"],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"primary\" | \"secondary\" | \"danger\"",
+      "required": true,
+      "values": ["primary", "secondary", "danger"],
+      "description": "Visual intent. Use danger only for destructive actions."
+    },
+    {
+      "name": "size",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "values": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Control density."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Primary review action",
+      "language": "tsx",
+      "code": "import { Button } from \"@atlas/ui/button\";\n\n<Button variant=\"primary\">Review invoices</Button>"
+    },
+    {
+      "name": "Destructive confirmation action",
+      "language": "tsx",
+      "code": "import { Button } from \"@atlas/ui/button\";\n\n<Button variant=\"danger\">Suspend account</Button>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "specific-action-label",
+      "severity": "error",
+      "message": "Button labels must name the action and object.",
+      "rationale": "Specific labels reduce financial workflow mistakes."
+    }
+  ],
+  "tokens": [
+    "token:color.action.primary",
+    "token:color.action.danger",
+    "token:component.button.height",
+    "token:component.button.radius"
+  ],
+  "principles": ["principle:clarity", "principle:accessibility-first"],
+  "patterns": ["pattern:billing-risk-review", "pattern:destructive-confirmation"],
+  "related": ["component:legacy-button"]
+}
+

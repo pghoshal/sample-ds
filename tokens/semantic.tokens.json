@@ -1,0 +1,133 @@
+{
+  "color": {
+    "surface": {
+      "canvas": {
+        "$value": "{color.slate.50}",
+        "$type": "color",
+        "$description": "Default page canvas."
+      },
+      "raised": {
+        "$value": "{color.white}",
+        "$type": "color",
+        "$description": "Card and modal surface."
+      },
+      "muted": {
+        "$value": "{color.slate.100}",
+        "$type": "color",
+        "$description": "Subtle nested surface."
+      },
+      "warning": {
+        "$value": "{color.amber.50}",
+        "$type": "color",
+        "$description": "Warning container background."
+      },
+      "danger": {
+        "$value": "{color.red.50}",
+        "$type": "color",
+        "$description": "Danger container background."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{color.slate.900}",
+        "$type": "color",
+        "$description": "Primary readable text."
+      },
+      "secondary": {
+        "$value": "{color.slate.700}",
+        "$type": "color",
+        "$description": "Secondary explanatory text."
+      },
+      "inverse": {
+        "$value": "{color.white}",
+        "$type": "color",
+        "$description": "Text on strong colored surfaces."
+      },
+      "danger": {
+        "$value": "{color.red.800}",
+        "$type": "color",
+        "$description": "Danger copy."
+      }
+    },
+    "action": {
+      "primary": {
+        "$value": "{color.blue.500}",
+        "$type": "color",
+        "$description": "Primary button background."
+      },
+      "primaryHover": {
+        "$value": "{color.blue.700}",
+        "$type": "color",
+        "$description": "Primary button hover background."
+      },
+      "danger": {
+        "$value": "{color.red.600}",
+        "$type": "color",
+        "$description": "Destructive action background."
+      },
+      "legacyPrimary": {
+        "$value": "{color.blue.700}",
+        "$type": "color",
+        "$description": "Deprecated primary action alias.",
+        "$deprecated": "Use token:color.action.primary for new UI.",
+        "$replacement": "token:color.action.primary"
+      }
+    },
+    "status": {
+      "success": {
+        "$value": "{color.green.600}",
+        "$type": "color",
+        "$description": "Positive status accent."
+      },
+      "warning": {
+        "$value": "{color.amber.600}",
+        "$type": "color",
+        "$description": "Warning status accent."
+      },
+      "danger": {
+        "$value": "{color.red.600}",
+        "$type": "color",
+        "$description": "Danger status accent."
+      }
+    }
+  },
+  "component": {
+    "button": {
+      "height": {
+        "$value": "40px",
+        "$type": "dimension",
+        "$description": "Default button height."
+      },
+      "radius": {
+        "$value": "{radius.md}",
+        "$type": "dimension",
+        "$description": "Default button radius."
+      }
+    },
+    "card": {
+      "padding": {
+        "$value": "{space.6}",
+        "$type": "dimension",
+        "$description": "Card padding."
+      },
+      "radius": {
+        "$value": "{radius.md}",
+        "$type": "dimension",
+        "$description": "Card radius."
+      }
+    },
+    "input": {
+      "height": {
+        "$value": "44px",
+        "$type": "dimension",
+        "$description": "Default input height."
+      },
+      "radius": {
+        "$value": "{radius.md}",
+        "$type": "dimension",
+        "$description": "Input radius."
+      }
+    }
+  }
+}
+

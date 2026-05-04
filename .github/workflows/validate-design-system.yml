@@ -1,0 +1,17 @@
+name: Validate design-system source
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node -e "for (const f of ['manifest.json','tokens/core.tokens.json','tokens/semantic.tokens.json']) JSON.parse(require('fs').readFileSync(f,'utf8'))"
+

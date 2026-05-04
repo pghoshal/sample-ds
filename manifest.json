@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "schema": {
+    "types": {
+      "token": {
+        "description": "Design token resolved by Style Dictionary",
+        "searchable": ["name", "summary", "tags", "$type"],
+        "facets": ["$type"],
+        "idPattern": "^token:"
+      },
+      "principle": {
+        "description": "Product and interaction principle",
+        "searchable": ["title", "summary", "body", "tags"],
+        "idPattern": "^principle:"
+      },
+      "pattern": {
+        "description": "Reusable multi-component UI pattern with optional contract",
+        "searchable": ["title", "summary", "body", "tags"],
+        "idPattern": "^pattern:"
+      },
+      "voice": {
+        "description": "Voice and tone guidance for generated product copy",
+        "searchable": ["title", "summary", "body", "tags"],
+        "idPattern": "^voice:"
+      },
+      "convention": {
+        "description": "Engineering and UX handoff convention",
+        "searchable": ["title", "summary", "body", "tags"],
+        "idPattern": "^convention:"
+      },
+      "component": {
+        "description": "Component metadata, props, examples, platform mappings, and constraints",
+        "searchable": ["name", "summary", "body", "tags"],
+        "idPattern": "^component:"
+      },
+      "prompt": {
+        "description": "Prompt template exposed through MCP prompts and resources",
+        "searchable": ["name", "description", "body", "tags"],
+        "idPattern": "^prompt:"
+      }
+    },
+    "relations": {
+      "uses_token": {
+        "from": "component",
+        "to": "token",
+        "description": "Component consumes the token"
+      },
+      "follows_principle": {
+        "from": "component",
+        "to": "principle",
+        "description": "Component should follow the principle"
+      },
+      "composes": {
+        "from": "pattern",
+        "to": "component",
+        "description": "Pattern composes the component"
+      },
+      "implements_pattern": {
+        "from": "component",
+        "to": "pattern",
+        "description": "Component is suitable for the pattern"
+      },
+      "related": {
+        "from": "*",
+        "to": "*",
+        "description": "Explicit relation declared in frontmatter or component metadata"
+      },
+      "references": {
+        "from": "*",
+        "to": "*",
+        "description": "Entity text explicitly references another entity id"
+      }
+    }
+  }
+}

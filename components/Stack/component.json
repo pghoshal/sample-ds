@@ -1,0 +1,77 @@
+{
+  "id": "component:stack",
+  "type": "component",
+  "name": "Stack",
+  "summary": "Layout primitive for vertical or horizontal spacing using design tokens.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/stack",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Stack implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Stack"],
+    "sideEffects": [],
+    "notes": ["Use Stack for local spacing; do not use it as a full-page shell."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/stack",
+      "component": "Stack",
+      "tokens": {
+        "gap2": "token:space.2",
+        "gap6": "token:space.6",
+        "gap8": "token:space.8"
+      },
+      "props": {
+        "gap": "6",
+        "direction": "column"
+      },
+      "notes": ["Use documented gap steps only."]
+    }
+  ],
+  "status": "stable",
+  "tags": ["layout", "spacing"],
+  "props": [
+    {
+      "name": "gap",
+      "type": "\"2\" | \"3\" | \"4\" | \"6\" | \"8\"",
+      "required": true,
+      "values": ["2", "3", "4", "6", "8"],
+      "description": "Spacing token step."
+    },
+    {
+      "name": "direction",
+      "type": "\"row\" | \"column\"",
+      "required": false,
+      "values": ["row", "column"],
+      "default": "column",
+      "description": "Stack direction."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Card stack",
+      "language": "tsx",
+      "code": "import { Stack } from \"@atlas/ui/stack\";\n\n<Stack gap=\"6\" direction=\"column\">...</Stack>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "tokenized-spacing-only",
+      "severity": "error",
+      "message": "Stack gap must use documented spacing steps."
+    }
+  ],
+  "tokens": ["token:space.2", "token:space.3", "token:space.4", "token:space.6", "token:space.8"],
+  "principles": ["principle:clarity"],
+  "patterns": ["pattern:billing-risk-review"],
+  "related": []
+}

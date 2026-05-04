@@ -1,0 +1,71 @@
+{
+  "id": "component:card",
+  "type": "component",
+  "name": "Card",
+  "summary": "Section container for dense operational information and grouped actions.",
+  "package": "@atlas/ui",
+  "importPath": "@atlas/ui/card",
+  "dependencies": [
+    {
+      "package": "@atlas/ui",
+      "version": "^3.0.0",
+      "type": "runtime",
+      "reason": "Provides the public Card implementation."
+    }
+  ],
+  "importGuidance": {
+    "named": ["Card"],
+    "sideEffects": [],
+    "notes": ["Use Card for repeated operational sections, not for full-page wrappers."]
+  },
+  "platforms": [
+    {
+      "platform": "web",
+      "framework": "react",
+      "package": "@atlas/ui",
+      "importPath": "@atlas/ui/card",
+      "component": "Card",
+      "tokens": {
+        "surface": "token:color.surface.raised",
+        "padding": "token:component.card.padding",
+        "radius": "token:component.card.radius"
+      }
+    }
+  ],
+  "status": "stable",
+  "tags": ["layout", "surface", "card"],
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "description": "Short section heading."
+    },
+    {
+      "name": "tone",
+      "type": "\"neutral\" | \"warning\" | \"danger\" | \"success\"",
+      "required": false,
+      "values": ["neutral", "warning", "danger", "success"],
+      "default": "neutral",
+      "description": "Semantic section tone."
+    }
+  ],
+  "examples": [
+    {
+      "name": "Billing summary card",
+      "language": "tsx",
+      "code": "import { Card } from \"@atlas/ui/card\";\n\n<Card title=\"Invoice risk\" tone=\"warning\">3 overdue invoices</Card>"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "card-title-required",
+      "severity": "error",
+      "message": "Cards must have a short title that describes the grouped content."
+    }
+  ],
+  "tokens": ["token:color.surface.raised", "token:component.card.padding", "token:component.card.radius"],
+  "principles": ["principle:clarity"],
+  "patterns": ["pattern:billing-risk-review"],
+  "related": []
+}
