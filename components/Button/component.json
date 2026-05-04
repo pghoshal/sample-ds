@@ -60,9 +60,46 @@
       "notes": ["Import the existing React Native Button; do not recreate it with Pressable unless the package is unavailable."]
     },
     {
+      "platform": "ios",
+      "framework": "swiftui",
+      "package": "@atlas/ios-ui",
+      "importPath": "AtlasUI.AtlasButton",
+      "component": "AtlasButton",
+      "tokens": {
+        "background": "token:color.action.primary",
+        "dangerBackground": "token:color.action.danger",
+        "radius": "token:platform.ios.radius.control",
+        "motion": "token:platform.ios.motion.normal"
+      },
+      "props": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "notes": ["Use AtlasButton from AtlasUI; do not rebuild the interaction with a raw SwiftUI Button unless AtlasUI is unavailable."]
+    },
+    {
+      "platform": "android",
+      "framework": "jetpack-compose",
+      "package": "@atlas/android-ui",
+      "importPath": "com.atlas.ui.button.AtlasButton",
+      "component": "AtlasButton",
+      "tokens": {
+        "background": "token:color.action.primary",
+        "dangerBackground": "token:color.action.danger",
+        "radius": "token:platform.android.radius.control",
+        "motion": "token:platform.android.motion.normal"
+      },
+      "props": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "notes": ["Use AtlasButton from com.atlas.ui.button; do not hand-roll a Material Button replacement."]
+    },
+    {
       "platform": "flutter",
       "framework": "flutter",
       "package": "atlas_ui",
+      "importPath": "package:atlas_ui/atlas_button.dart",
       "component": "AtlasButton",
       "tokens": {
         "background": "token:color.action.primary",

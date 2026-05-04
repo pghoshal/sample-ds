@@ -1,17 +1,27 @@
-export interface ButtonProps {
-  /** Visual intent. Use danger only for destructive account actions. */
-  variant: "primary" | "secondary" | "danger";
-  /** Control density. @default "md" */
-  size?: "sm" | "md" | "lg";
-  /** Specific action label. */
-  children: string;
-  /** Disabled buttons must still explain unavailable actions nearby. */
-  disabled?: boolean;
-  /** @deprecated Use children for visible labels and aria-label only for icon-only actions. */
-  ariaLabel?: string;
+import { forwardRef } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import "./button.css";
+
+export type AtlasButtonVariant = "primary" | "secondary" | "danger";
+export type AtlasButtonSize = "sm" | "md" | "lg";
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: AtlasButtonVariant;
+  size?: AtlasButtonSize;
+  children: ReactNode;
 }
 
-export function Button(_props: ButtonProps) {
-  return null;
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size = "md", children, ...props }, ref) => (
+    <button
+      {...props}
+      ref={ref}
+      className={`atlas-button atlas-button--${variant} atlas-button--${size}`}
+      data-component="button"
+    >
+      {children}
+    </button>
+  ),
+);
 
+Button.displayName = "Button";

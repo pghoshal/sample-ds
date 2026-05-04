@@ -1,0 +1,36 @@
+.atlas-button {
+  min-height: var(--component-button-height);
+  border: 0;
+  border-radius: var(--component-button-radius);
+  padding-inline: var(--space-4);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.atlas-button--primary {
+  background: var(--color-action-primary);
+  color: var(--color-text-inverse);
+}
+
+.atlas-button--secondary {
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+}
+
+.atlas-button--danger {
+  background: var(--color-action-danger);
+  color: var(--color-text-inverse);
+}
+
+.atlas-button--sm {
+  min-height: var(--space-8);
+}
+
+.atlas-button--lg {
+  min-height: var(--space-12);
+}
