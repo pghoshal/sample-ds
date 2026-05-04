@@ -2,6 +2,8 @@
 
 This repository is a complete sample source repo for `design-system-mcp`.
 
+![Atlas visual preview](docs/visual-preview.png)
+
 It intentionally exercises every major ingestion path:
 
 - `manifest.json` with explicit content types and relations
