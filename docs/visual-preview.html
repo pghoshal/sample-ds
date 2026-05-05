@@ -1,515 +1,648 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Atlas Enterprise Design System Preview</title>
-    <style>
-      :root {
-        --color-surface-canvas: #f8fafc;
-        --color-surface-raised: #ffffff;
-        --color-surface-muted: #eef2f7;
-        --color-surface-warning: #fffbeb;
-        --color-surface-danger: #fef2f2;
-        --color-text-primary: #0f172a;
-        --color-text-secondary: #334155;
-        --color-text-inverse: #ffffff;
-        --color-text-danger: #991b1b;
-        --color-action-primary: #185adb;
-        --color-action-primary-hover: #0b3a91;
-        --color-action-danger: #dc2626;
-        --color-status-success: #059669;
-        --color-status-warning: #d97706;
-        --color-status-danger: #dc2626;
-        --space-2: 8px;
-        --space-3: 12px;
-        --space-4: 16px;
-        --space-6: 24px;
-        --space-8: 32px;
-        --space-12: 48px;
-        --radius-sm: 4px;
-        --radius-md: 8px;
-        --radius-lg: 12px;
-        --font-family-sans: Inter, Arial, sans-serif;
-        --font-size-sm: 14px;
-        --font-size-md: 16px;
-        --font-size-lg: 20px;
-        --font-size-xl: 28px;
-        --font-weight-regular: 400;
-        --font-weight-semibold: 600;
-        --font-weight-bold: 700;
-        --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.08);
-        --shadow-modal: 0 24px 48px rgba(15, 23, 42, 0.24);
-      }
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atlas Enterprise Design System Preview</title>
+<link rel="stylesheet" href="./visual-tokens.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: var(--space-0); padding: var(--space-0); }
+  body {
+    font-family: var(--platform-web-font-body);
+    color: var(--color-text-primary);
+    background: var(--color-surface-canvas);
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+  }
 
-      * {
-        box-sizing: border-box;
-      }
+  .theme-provider {
+    background: var(--color-surface-canvas);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    transition: background var(--motion-duration-normal) var(--motion-easing-standard),
+                color var(--motion-duration-normal) var(--motion-easing-standard);
+  }
 
-      body {
-        margin: 0;
-        background: var(--color-surface-canvas);
-        color: var(--color-text-primary);
-        font-family: var(--font-family-sans);
-        font-size: var(--font-size-md);
-      }
+  .page {
+    max-width: var(--platform-web-layout-pageMaxWidth);
+    margin: var(--space-0) auto;
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
 
-      .shell {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 280px 1fr;
-      }
+  .topbar {
+    position: sticky;
+    top: var(--space-0);
+    z-index: var(--layer-sticky);
+    background: var(--color-surface-raised);
+    border-bottom: var(--border-width-1) solid var(--color-surface-muted);
+  }
+  .topbar-inner {
+    max-width: var(--platform-web-layout-pageMaxWidth);
+    margin: var(--space-0) auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .brand {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+  }
+  .brand-subtle {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-regular);
+    margin-left: var(--space-2);
+  }
+  .topbar-spacer { flex: 1; }
 
-      .nav {
-        background: var(--color-text-primary);
-        color: var(--color-text-inverse);
-        padding: var(--space-8);
-      }
+  .text-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: var(--search-min-width);
+  }
+  .text-field-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+  }
+  .text-field-input {
+    height: var(--component-input-height);
+    padding: var(--space-0) var(--space-3);
+    border-radius: var(--component-input-radius);
+    border: var(--border-width-1) solid var(--color-surface-muted);
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+    font: inherit;
+    transition: border-color var(--motion-duration-fast) var(--motion-easing-standard),
+                box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+  }
+  .text-field-input::placeholder { color: var(--color-text-secondary); }
+  .text-field-input:focus {
+    outline: none;
+    border-color: var(--state-action-primary-focusRing);
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--state-action-primary-focusRing);
+  }
 
-      .mark {
-        width: 48px;
-        height: 48px;
-        display: grid;
-        place-items: center;
-        border-radius: var(--radius-md);
-        background: var(--color-action-primary);
-        font-weight: var(--font-weight-bold);
-        margin-bottom: var(--space-8);
-      }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: var(--component-button-height);
+    padding: var(--space-0) var(--space-4);
+    border-radius: var(--component-button-radius);
+    border: var(--border-width-1) solid transparent;
+    background: var(--color-action-primary);
+    color: var(--color-text-inverse);
+    font: inherit;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: background var(--motion-duration-fast) var(--motion-easing-standard);
+  }
+  .button:hover { background: var(--color-action-primaryHover); }
+  .button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--state-action-primary-focusRing);
+  }
 
-      .nav h1 {
-        margin: 0 0 var(--space-3);
-        font-size: var(--font-size-xl);
-        line-height: 1.1;
-      }
+  .theme-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border-radius: var(--component-button-radius);
+    background: var(--color-surface-muted);
+    border: var(--border-width-1) solid var(--color-surface-muted);
+  }
+  .theme-switch-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-right: var(--space-2);
+  }
+  .theme-switch-button {
+    appearance: none;
+    border: var(--border-width-1) solid transparent;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    height: var(--density-compact-control-height);
+    padding: var(--space-0) var(--space-3);
+    border-radius: var(--component-button-radius);
+    cursor: pointer;
+    transition: background var(--motion-duration-fast) var(--motion-easing-standard),
+                color var(--motion-duration-fast) var(--motion-easing-standard);
+  }
+  .theme-switch-button:hover { color: var(--color-text-primary); }
+  .theme-switch-button[aria-pressed="true"] {
+    background: var(--color-surface-raised);
+    color: var(--color-action-primary);
+    border-color: var(--color-surface-muted);
+  }
+  .theme-switch-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--state-action-primary-focusRing);
+  }
 
-      .nav p {
-        margin: 0;
-        color: #cbd5e1;
-        line-height: 1.55;
-      }
+  .alert {
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  .alert-warning {
+    background: var(--color-surface-warning);
+    border-left: var(--border-width-4) solid var(--color-status-warning);
+  }
+  .alert-title {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: var(--space-0) var(--space-0) var(--space-2) var(--space-0);
+    font-size: var(--font-size-sm);
+  }
+  .alert-body {
+    color: var(--color-text-secondary);
+    margin: var(--space-0);
+  }
 
-      .main {
-        padding: var(--space-8);
-      }
+  .grid-kpi {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+  .grid-charts {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-4);
+  }
 
-      .toolbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-4);
-        margin-bottom: var(--space-6);
-      }
+  .card {
+    background: var(--color-surface-raised);
+    border-radius: var(--component-card-radius);
+    padding: var(--density-comfortable-card-padding);
+    box-shadow: var(--elevation-card);
+    border: var(--border-width-1) solid var(--color-surface-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .card-warning { border-top: var(--border-width-3) solid var(--color-status-warning); }
+  .card-danger  { border-top: var(--border-width-3) solid var(--color-status-danger); }
 
-      .eyebrow {
-        margin: 0 0 var(--space-2);
-        color: var(--color-action-primary);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-bold);
-        text-transform: uppercase;
-      }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .card-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    margin: var(--space-0);
+  }
+  .card-title-large {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    text-transform: none;
+    letter-spacing: 0;
+  }
 
-      .title {
-        margin: 0;
-        font-size: 34px;
-        line-height: 1.12;
-        letter-spacing: 0;
-      }
+  .kpi-value {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+  .kpi-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+  .delta-positive { color: var(--color-status-success); font-weight: var(--font-weight-semibold); }
+  .delta-negative { color: var(--color-status-danger);  font-weight: var(--font-weight-semibold); }
 
-      .search {
-        min-width: 320px;
-        height: 44px;
-        border: 1px solid #cbd5e1;
-        border-radius: var(--radius-md);
-        background: var(--color-surface-raised);
-        color: var(--color-text-primary);
-        padding: 0 var(--space-4);
-        font: inherit;
-      }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.6;
+    border: var(--border-width-1) solid transparent;
+  }
+  .badge-dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+  .badge-success { background: var(--color-surface-muted);   color: var(--color-text-primary); }
+  .badge-success .badge-dot { background: var(--color-status-success); }
+  .badge-warning { background: var(--color-surface-warning); color: var(--color-text-primary); }
+  .badge-warning .badge-dot { background: var(--color-status-warning); }
+  .badge-danger  { background: var(--color-surface-danger);  color: var(--color-text-primary); }
+  .badge-danger  .badge-dot { background: var(--color-status-danger); }
+  .badge-neutral { background: var(--color-surface-muted);   color: var(--color-text-secondary); }
 
-      .grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: var(--space-6);
-      }
+  .chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-0);
+  }
+  .chart-summary {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    margin: var(--space-0);
+  }
+  .chart-svg { width: 100%; height: var(--chart-height); display: block; }
+  .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+  .chart-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .chart-legend-swatch {
+    width: var(--legend-swatch-size);
+    height: var(--legend-swatch-size);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+  }
+  .swatch-categorical-one   { background: var(--dataviz-categorical-one); }
+  .swatch-categorical-two   { background: var(--dataviz-categorical-two); }
+  .swatch-categorical-three { background: var(--dataviz-categorical-three); }
+  .swatch-categorical-four  { background: var(--dataviz-categorical-four); }
 
-      .mode-strip {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-3);
-        margin-bottom: var(--space-6);
-      }
+  .data-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: var(--border-width-1) solid var(--color-surface-muted);
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+  }
+  table.data-table thead th {
+    position: sticky;
+    top: var(--space-0);
+    z-index: var(--layer-sticky);
+    text-align: left;
+    background: var(--color-surface-muted);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    font-size: var(--font-size-sm);
+    letter-spacing: normal;
+    height: var(--density-compact-control-height);
+    padding: var(--space-0) var(--space-4);
+    border-bottom: var(--border-width-1) solid var(--color-surface-muted);
+  }
+  table.data-table tbody td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-width-1) solid var(--color-surface-muted);
+    color: var(--color-text-primary);
+    vertical-align: middle;
+  }
+  table.data-table tbody tr:last-child td { border-bottom: none; }
+  table.data-table tbody tr:hover { background: var(--color-surface-muted); }
+  .col-num { text-align: right; font-variant-numeric: tabular-nums; }
 
-      .mode {
-        min-height: 72px;
-        border-radius: var(--radius-md);
-        border: 1px solid #d8dee8;
-        padding: var(--space-4);
-        font-weight: var(--font-weight-semibold);
-      }
+  .records-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .records-meta {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+</style>
+</head>
+<body>
 
-      .mode span {
-        display: block;
-        margin-top: var(--space-2);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-regular);
-      }
+<div id="app" class="theme-provider" data-theme="light" data-density="comfortable" role="application" aria-label="Atlas risk analytics">
 
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-4);
-        margin-bottom: var(--space-6);
-      }
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Atlas Risk <span class="brand-subtle">Analytics</span></div>
+      <div class="topbar-spacer"></div>
 
-      .card,
-      .panel {
-        background: var(--color-surface-raised);
-        border: 1px solid #d8dee8;
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-card);
-      }
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <span class="theme-switch-label">Theme</span>
+        <button type="button" class="theme-switch-button" data-set-theme="light" aria-pressed="true">Light</button>
+        <button type="button" class="theme-switch-button" data-set-theme="dark" aria-pressed="false">Dark</button>
+        <button type="button" class="theme-switch-button" data-set-theme="highContrast" aria-pressed="false">High contrast</button>
+      </div>
 
-      .card {
-        padding: var(--space-6);
-      }
-
-      .metric {
-        margin: 0 0 var(--space-2);
-        color: var(--color-text-secondary);
-        font-size: var(--font-size-sm);
-      }
-
-      .value {
-        margin: 0;
-        font-size: 30px;
-        font-weight: var(--font-weight-bold);
-      }
-
-      .value.success {
-        color: var(--color-status-success);
-      }
-
-      .value.warning {
-        color: var(--color-status-warning);
-      }
-
-      .value.danger {
-        color: var(--color-status-danger);
-      }
-
-      .panel {
-        padding: var(--space-6);
-      }
-
-      .panel h2 {
-        margin: 0 0 var(--space-4);
-        font-size: var(--font-size-lg);
-      }
-
-      .alert {
-        border: 1px solid #f1c97a;
-        border-left: 4px solid var(--color-status-warning);
-        border-radius: var(--radius-md);
-        background: var(--color-surface-warning);
-        padding: var(--space-4);
-        margin-bottom: var(--space-4);
-      }
-
-      .chart {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        align-items: end;
-        gap: var(--space-3);
-        height: 180px;
-        padding: var(--space-4);
-        border-radius: var(--radius-md);
-        background: var(--color-surface-muted);
-        margin-bottom: var(--space-4);
-      }
-
-      .bar {
-        min-height: 24px;
-        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        min-height: 32px;
-        padding: 0 var(--space-3);
-        border-radius: var(--radius-sm);
-        background: var(--color-surface-danger);
-        color: var(--color-text-danger);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-semibold);
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: var(--font-size-sm);
-      }
-
-      th,
-      td {
-        padding: var(--space-3);
-        text-align: left;
-        border-top: 1px solid #e2e8f0;
-      }
-
-      th {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: var(--color-surface-muted);
-        color: var(--color-text-secondary);
-        font-weight: var(--font-weight-semibold);
-      }
-
-      .alert strong {
-        display: block;
-        margin-bottom: var(--space-2);
-      }
-
-      .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-4);
-        padding: var(--space-4) 0;
-        border-top: 1px solid #e2e8f0;
-      }
-
-      .row:first-of-type {
-        border-top: 0;
-      }
-
-      .row span {
-        color: var(--color-text-secondary);
-        font-size: var(--font-size-sm);
-      }
-
-      .actions {
-        display: flex;
-        gap: var(--space-3);
-        flex-wrap: wrap;
-        margin-top: var(--space-4);
-      }
-
-      .button {
-        min-height: 40px;
-        border: 0;
-        border-radius: var(--radius-md);
-        padding: 0 var(--space-4);
-        font: inherit;
-        font-weight: var(--font-weight-semibold);
-        transition: background 120ms cubic-bezier(0.2, 0, 0, 1);
-      }
-
-      .primary {
-        background: var(--color-action-primary);
-        color: var(--color-text-inverse);
-      }
-
-      .secondary {
-        background: var(--color-surface-muted);
-        color: var(--color-text-primary);
-      }
-
-      .danger {
-        background: var(--color-action-danger);
-        color: var(--color-text-inverse);
-      }
-
-      .modal {
-        background: var(--color-surface-raised);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-modal);
-        border: 1px solid #d8dee8;
-        overflow: hidden;
-      }
-
-      .modal-head {
-        padding: var(--space-6);
-        background: var(--color-surface-danger);
-        color: var(--color-text-danger);
-      }
-
-      .modal-head h2 {
-        margin: 0;
-      }
-
-      .modal-body {
-        padding: var(--space-6);
-      }
-
-      .modal-body p {
-        margin: 0 0 var(--space-4);
-        color: var(--color-text-secondary);
-        line-height: 1.55;
-      }
-
-      .swatches {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: var(--space-2);
-        margin-top: var(--space-6);
-      }
-
-      .swatch {
-        height: 44px;
-        border-radius: var(--radius-sm);
-        border: 1px solid rgba(15, 23, 42, 0.12);
-      }
-
-      @media (max-width: 900px) {
-        .shell,
-        .grid,
-        .cards,
-        .mode-strip {
-          grid-template-columns: 1fr;
-        }
-
-        .toolbar {
-          align-items: stretch;
-          flex-direction: column;
-        }
-
-        .search {
-          min-width: 0;
-          width: 100%;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="shell">
-      <aside class="nav">
-        <div class="mark">AT</div>
-        <h1>Atlas Enterprise</h1>
-        <p>Billing risk review powered by semantic tokens, pattern contracts, and component usage metadata.</p>
-      </aside>
-
-      <main class="main">
-        <div class="toolbar">
-          <div>
-            <p class="eyebrow">Design-system MCP visual proof</p>
-            <h1 class="title">Billing risk review</h1>
-          </div>
-          <label>
-            <span class="eyebrow">Search</span>
-            <input class="search" value="Acme Finance Group" aria-label="Search accounts" />
-          </label>
-        </div>
-
-        <section class="cards" aria-label="Account metrics">
-          <article class="card">
-            <p class="metric">Account health</p>
-            <p class="value success">92%</p>
-          </article>
-          <article class="card">
-            <p class="metric">Overdue invoices</p>
-            <p class="value warning">3</p>
-          </article>
-          <article class="card">
-            <p class="metric">Suspension risk</p>
-            <p class="value danger">High</p>
-          </article>
-        </section>
-
-        <section class="mode-strip" aria-label="Theme and density modes">
-          <div class="mode" style="background: #f8fafc; color: #0f172a">
-            Light theme
-            <span>theme.light.color.surface.canvas</span>
-          </div>
-          <div class="mode" style="background: #0b1120; color: #f8fafc">
-            Dark theme
-            <span>theme.dark.color.surface.canvas</span>
-          </div>
-          <div class="mode" style="background: #000000; color: #fde68a">
-            High contrast
-            <span>theme.highContrast.color.text.secondary</span>
-          </div>
-        </section>
-
-        <section class="grid">
-          <article class="panel">
-            <h2>Risk signals</h2>
-            <div class="chart" role="img" aria-label="High risk invoices increased this week">
-              <span class="bar" style="height: 44%; background: var(--color-action-primary)"></span>
-              <span class="bar" style="height: 64%; background: var(--color-status-success)"></span>
-              <span class="bar" style="height: 78%; background: var(--color-status-warning)"></span>
-              <span class="bar" style="height: 92%; background: var(--color-status-danger)"></span>
-            </div>
-            <div class="alert">
-              <strong>3 invoices are overdue</strong>
-              Review payment history before changing account status.
-            </div>
-            <table aria-label="Invoice risk records">
-              <thead>
-                <tr>
-                  <th>Invoice</th>
-                  <th>Age</th>
-                  <th>Risk</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>INV-1042</td>
-                  <td>28 days</td>
-                  <td><span class="badge">High risk</span></td>
-                </tr>
-                <tr>
-                  <td>INV-1038</td>
-                  <td>14 days</td>
-                  <td><span class="badge" style="background: var(--color-surface-warning); color: #7c4a03">Medium risk</span></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="row">
-              <div>
-                <strong>Invoice INV-1042</strong><br />
-                <span>28 days overdue · $18,420 open balance</span>
-              </div>
-              <span>warning</span>
-            </div>
-            <div class="row">
-              <div>
-                <strong>Payment method</strong><br />
-                <span>ACH mandate expired yesterday</span>
-              </div>
-              <span>danger</span>
-            </div>
-            <div class="actions">
-              <button class="button primary">Review invoices</button>
-              <button class="button secondary">Create risk note</button>
-            </div>
-          </article>
-
-          <aside class="modal" role="alertdialog" aria-labelledby="modal-title">
-            <div class="modal-head">
-              <h2 id="modal-title">Suspend account</h2>
-            </div>
-            <div class="modal-body">
-              <p>
-                Account access will be suspended for Acme Finance Group until finance restores it.
-              </p>
-              <div class="actions">
-                <button class="button secondary">Cancel</button>
-                <button class="button danger">Suspend account</button>
-              </div>
-              <div class="swatches" aria-label="Selected token palette">
-                <span class="swatch" style="background: var(--color-action-primary)"></span>
-                <span class="swatch" style="background: var(--color-action-danger)"></span>
-                <span class="swatch" style="background: var(--color-status-warning)"></span>
-                <span class="swatch" style="background: var(--color-surface-muted)"></span>
-                <span class="swatch" style="background: var(--color-text-primary)"></span>
-              </div>
-            </div>
-          </aside>
-        </section>
-      </main>
+      <label class="text-field">
+        <span class="text-field-label">Search accounts</span>
+        <input class="text-field-input" type="search" placeholder="Search by account name or ID" aria-label="Search accounts" />
+      </label>
     </div>
-  </body>
+  </header>
+
+  <main class="page">
+
+    <section role="region" aria-label="Operational alerts">
+      <div class="alert alert-warning" role="status">
+        <div>
+          <p class="alert-title">3 invoices are overdue</p>
+          <p class="alert-body">Review payment history before changing account status.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-kpi" aria-label="Key metrics">
+
+      <article class="card">
+        <header class="card-header"><h2 class="card-title">Total revenue</h2></header>
+        <div class="kpi-value">$1.42M</div>
+        <div class="kpi-meta">
+          <span class="delta-positive">+12.4%</span>
+          <span>vs prior 30 days</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <header class="card-header"><h2 class="card-title">Active accounts</h2></header>
+        <div class="kpi-value">8,214</div>
+        <div class="kpi-meta">
+          <span class="delta-positive">+186</span>
+          <span>new this week</span>
+        </div>
+      </article>
+
+      <article class="card card-warning">
+        <header class="card-header">
+          <h2 class="card-title">Overdue invoices</h2>
+          <span class="badge badge-warning"><span class="badge-dot" aria-hidden="true"></span>Watch</span>
+        </header>
+        <div class="kpi-value">37</div>
+        <div class="kpi-meta">
+          <span class="delta-negative">+9</span>
+          <span>vs prior week</span>
+        </div>
+      </article>
+
+      <article class="card card-danger">
+        <header class="card-header">
+          <h2 class="card-title">High risk accounts</h2>
+          <span class="badge badge-danger"><span class="badge-dot" aria-hidden="true"></span>Action</span>
+        </header>
+        <div class="kpi-value">14</div>
+        <div class="kpi-meta">
+          <span class="delta-negative">+3</span>
+          <span>past 7 days</span>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="grid-charts" aria-label="Trend visualizations">
+
+      <article class="card">
+        <header class="card-header">
+          <h2 class="card-title card-title-large">Revenue trend</h2>
+          <span class="badge badge-neutral">Last 8 weeks</span>
+        </header>
+        <figure class="chart" aria-labelledby="trend-summary">
+          <p id="trend-summary" class="chart-summary">
+            Weekly revenue rose 12% over the last 8 weeks, with a small dip in week 5.
+          </p>
+          <svg class="chart-svg" viewBox="0 0 600 220" role="img" aria-labelledby="trend-summary">
+            <g stroke="var(--dataviz-axis)" stroke-width="1" opacity="0.18">
+              <line x1="40" y1="20"  x2="580" y2="20" />
+              <line x1="40" y1="70"  x2="580" y2="70" />
+              <line x1="40" y1="120" x2="580" y2="120" />
+              <line x1="40" y1="170" x2="580" y2="170" />
+            </g>
+            <g fill="var(--dataviz-axis)" font-size="11">
+              <text x="0" y="24">200k</text>
+              <text x="0" y="74">150k</text>
+              <text x="0" y="124">100k</text>
+              <text x="0" y="174">50k</text>
+              <text x="40"  y="200">W1</text>
+              <text x="115" y="200">W2</text>
+              <text x="190" y="200">W3</text>
+              <text x="265" y="200">W4</text>
+              <text x="340" y="200">W5</text>
+              <text x="415" y="200">W6</text>
+              <text x="490" y="200">W7</text>
+              <text x="560" y="200">W8</text>
+            </g>
+            <polyline
+              fill="none"
+              stroke="var(--dataviz-categorical-one)"
+              stroke-width="2.5"
+              points="50,150 125,140 200,120 275,110 350,130 425,90 500,80 570,55"
+            />
+            <g fill="var(--dataviz-categorical-one)">
+              <circle cx="50"  cy="150" r="3.5" />
+              <circle cx="125" cy="140" r="3.5" />
+              <circle cx="200" cy="120" r="3.5" />
+              <circle cx="275" cy="110" r="3.5" />
+              <circle cx="350" cy="130" r="3.5" />
+              <circle cx="425" cy="90"  r="3.5" />
+              <circle cx="500" cy="80"  r="3.5" />
+              <circle cx="570" cy="55"  r="3.5" />
+            </g>
+          </svg>
+          <div class="chart-legend" aria-hidden="true">
+            <span class="chart-legend-item">
+              <span class="chart-legend-swatch swatch-categorical-one"></span>
+              Weekly revenue
+            </span>
+          </div>
+        </figure>
+      </article>
+
+      <article class="card">
+        <header class="card-header">
+          <h2 class="card-title card-title-large">Top categories</h2>
+          <span class="badge badge-neutral">This quarter</span>
+        </header>
+        <figure class="chart" aria-labelledby="cat-summary">
+          <p id="cat-summary" class="chart-summary">
+            Subscriptions lead revenue; services rank second, hardware third.
+          </p>
+          <svg class="chart-svg" viewBox="0 0 320 220" role="img" aria-labelledby="cat-summary">
+            <g stroke="var(--dataviz-axis)" stroke-width="1" opacity="0.18">
+              <line x1="60" y1="20"  x2="310" y2="20" />
+              <line x1="60" y1="70"  x2="310" y2="70" />
+              <line x1="60" y1="120" x2="310" y2="120" />
+              <line x1="60" y1="170" x2="310" y2="170" />
+            </g>
+            <g fill="var(--dataviz-axis)" font-size="11">
+              <text x="0" y="44">Subs</text>
+              <text x="0" y="84">Svcs</text>
+              <text x="0" y="124">HW</text>
+              <text x="0" y="164">Other</text>
+            </g>
+            <rect x="60" y="32"  width="240" height="22" rx="4" fill="var(--dataviz-categorical-one)" />
+            <rect x="60" y="72"  width="180" height="22" rx="4" fill="var(--dataviz-categorical-two)" />
+            <rect x="60" y="112" width="120" height="22" rx="4" fill="var(--dataviz-categorical-three)" />
+            <rect x="60" y="152" width="60"  height="22" rx="4" fill="var(--dataviz-categorical-four)" />
+          </svg>
+          <div class="chart-legend" aria-hidden="true">
+            <span class="chart-legend-item">
+              <span class="chart-legend-swatch swatch-categorical-one"></span>
+              Subscriptions
+            </span>
+            <span class="chart-legend-item">
+              <span class="chart-legend-swatch swatch-categorical-two"></span>
+              Services
+            </span>
+            <span class="chart-legend-item">
+              <span class="chart-legend-swatch swatch-categorical-three"></span>
+              Hardware
+            </span>
+            <span class="chart-legend-item">
+              <span class="chart-legend-swatch swatch-categorical-four"></span>
+              Other
+            </span>
+          </div>
+        </figure>
+      </article>
+
+    </section>
+
+    <section aria-label="Account risk records">
+      <article class="card">
+        <header class="card-header">
+          <h2 class="card-title card-title-large">Account risk records</h2>
+          <span class="records-meta">42 accounts flagged for review</span>
+        </header>
+        <div class="data-table-wrap">
+          <table class="data-table" aria-label="Account risk records">
+            <thead>
+              <tr>
+                <th scope="col">Account</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Risk</th>
+                <th scope="col" class="col-num">Exposure</th>
+                <th scope="col" class="col-num">Days overdue</th>
+                <th scope="col">Last review</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Northwind Trading</td>
+                <td>K. Patel</td>
+                <td><span class="badge badge-danger"><span class="badge-dot" aria-hidden="true"></span>High</span></td>
+                <td class="col-num">$184,200</td>
+                <td class="col-num">42</td>
+                <td>2026-04-22</td>
+              </tr>
+              <tr>
+                <td>Helios Logistics</td>
+                <td>S. Marin</td>
+                <td><span class="badge badge-warning"><span class="badge-dot" aria-hidden="true"></span>Medium</span></td>
+                <td class="col-num">$92,450</td>
+                <td class="col-num">21</td>
+                <td>2026-04-29</td>
+              </tr>
+              <tr>
+                <td>BlueOak Foods</td>
+                <td>J. Romero</td>
+                <td><span class="badge badge-success"><span class="badge-dot" aria-hidden="true"></span>Low</span></td>
+                <td class="col-num">$18,900</td>
+                <td class="col-num">3</td>
+                <td>2026-05-02</td>
+              </tr>
+              <tr>
+                <td>Vertex Manufacturing</td>
+                <td>A. Cho</td>
+                <td><span class="badge badge-danger"><span class="badge-dot" aria-hidden="true"></span>High</span></td>
+                <td class="col-num">$311,780</td>
+                <td class="col-num">58</td>
+                <td>2026-04-12</td>
+              </tr>
+              <tr>
+                <td>Cascade Health</td>
+                <td>R. Diallo</td>
+                <td><span class="badge badge-warning"><span class="badge-dot" aria-hidden="true"></span>Medium</span></td>
+                <td class="col-num">$67,300</td>
+                <td class="col-num">14</td>
+                <td>2026-04-30</td>
+              </tr>
+              <tr>
+                <td>Atlas Energy Co.</td>
+                <td>M. Bauer</td>
+                <td><span class="badge badge-success"><span class="badge-dot" aria-hidden="true"></span>Low</span></td>
+                <td class="col-num">$12,540</td>
+                <td class="col-num">0</td>
+                <td>2026-05-04</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="records-toolbar">
+          <span class="records-meta">Showing 6 of 42</span>
+          <button class="button" type="button">Export risk report</button>
+        </div>
+      </article>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  (function () {
+    var STORAGE_KEY = "atlas-theme";
+    var VALID = { light: 1, dark: 1, highContrast: 1 };
+    var app = document.getElementById("app");
+    var buttons = document.querySelectorAll("[data-set-theme]");
+
+    function preferred() {
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && VALID[saved]) return saved;
+      } catch (e) {}
+      return "light";
+    }
+
+    function applyTheme(name) {
+      if (!VALID[name]) name = "light";
+      app.setAttribute("data-theme", name);
+      buttons.forEach(function (btn) {
+        btn.setAttribute("aria-pressed", btn.getAttribute("data-set-theme") === name ? "true" : "false");
+      });
+      try { localStorage.setItem(STORAGE_KEY, name); } catch (e) {}
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyTheme(btn.getAttribute("data-set-theme"));
+      });
+    });
+
+    applyTheme(preferred());
+  })();
+</script>
+
+</body>
 </html>

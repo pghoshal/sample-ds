@@ -1,0 +1,162 @@
+/*
+ * Design system token surface.
+ * Semantic vars (--color-*, --state-*, --dataviz-*) swap per [data-theme].
+ * Names align with token ids returned by the design-system MCP resolve_token tool.
+ */
+
+/* Theme-invariant tokens. */
+:root {
+  --component-card-padding: 24px;
+  --component-card-radius: 8px;
+  --component-button-height: 40px;
+  --component-button-radius: 8px;
+  --component-input-height: 44px;
+  --component-input-radius: 8px;
+  --density-comfortable-control-height: 44px;
+  --density-comfortable-control-gap: 12px;
+  --density-comfortable-card-padding: 24px;
+  --density-compact-control-height: 32px;
+  --density-compact-control-gap: 8px;
+
+  --elevation-card: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.08);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --space-0: 0px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  --layer-sticky: 10;
+
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --platform-web-font-body: Inter, Arial, sans-serif;
+  --platform-web-layout-pageMaxWidth: 1280px;
+
+  --motion-duration-fast: 120ms;
+  --motion-duration-normal: 180ms;
+  --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Local extension tokens. */
+  --border-width-1: 1px;
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+  --focus-ring-width: 3px;
+  --dot-size: 8px;
+  --legend-swatch-size: 10px;
+  --search-min-width: 280px;
+  --chart-height: 240px;
+}
+
+/* LIGHT theme — applied to :root by default and explicitly via [data-theme="light"]. */
+:root,
+[data-theme="light"] {
+  --color-surface-canvas: #F8FAFC;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-muted: #EEF2F7;
+  --color-surface-warning: #FFFBEB;
+  --color-surface-danger: #FEF2F2;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #334155;
+  --color-text-inverse: #FFFFFF;
+  --color-text-danger: #991B1B;
+
+  --color-action-primary: #185ADB;
+  --color-action-primaryHover: #0B3A91;
+  --color-action-danger: #DC2626;
+
+  --color-status-success: #059669;
+  --color-status-warning: #D97706;
+  --color-status-danger: #DC2626;
+
+  --state-action-primary-focusRing: #185ADB;
+
+  --dataviz-categorical-one: #185ADB;
+  --dataviz-categorical-two: #059669;
+  --dataviz-categorical-three: #D97706;
+  --dataviz-categorical-four: #DC2626;
+  --dataviz-risk-low: #059669;
+  --dataviz-risk-medium: #D97706;
+  --dataviz-risk-high: #DC2626;
+  --dataviz-axis: #334155;
+}
+
+/* DARK theme. */
+[data-theme="dark"] {
+  --color-surface-canvas: #0B1120;
+  --color-surface-raised: #111827;
+  --color-surface-muted: #1E293B;
+  --color-surface-warning: #422006;
+  --color-surface-danger: #450A0A;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-inverse: #0B1120;
+  --color-text-danger: #FCA5A5;
+
+  --color-action-primary: #60A5FA;
+  --color-action-primaryHover: #93C5FD;
+  --color-action-danger: #F87171;
+
+  --color-status-success: #34D399;
+  --color-status-warning: #FBBF24;
+  --color-status-danger: #F87171;
+
+  --state-action-primary-focusRing: #60A5FA;
+
+  --dataviz-categorical-one: #93C5FD;
+  --dataviz-categorical-two: #6EE7B7;
+  --dataviz-categorical-three: #FCD34D;
+  --dataviz-categorical-four: #FCA5A5;
+  --dataviz-risk-low: #34D399;
+  --dataviz-risk-medium: #FBBF24;
+  --dataviz-risk-high: #F87171;
+  --dataviz-axis: #CBD5E1;
+}
+
+/* HIGH-CONTRAST theme. */
+[data-theme="highContrast"] {
+  --color-surface-canvas: #000000;
+  --color-surface-raised: #000000;
+  --color-surface-muted: #111111;
+  --color-surface-warning: #000000;
+  --color-surface-danger: #000000;
+
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #FDE68A;
+  --color-text-inverse: #000000;
+  --color-text-danger: #FFB4B4;
+
+  --color-action-primary: #FFFF00;
+  --color-action-primaryHover: #FFF59D;
+  --color-action-danger: #FF5C5C;
+
+  --color-status-success: #00FF7F;
+  --color-status-warning: #FFFF00;
+  --color-status-danger: #FF5C5C;
+
+  --state-action-primary-focusRing: #FDE047;
+
+  --dataviz-categorical-one: #00FFFF;
+  --dataviz-categorical-two: #00FF7F;
+  --dataviz-categorical-three: #FFFF00;
+  --dataviz-categorical-four: #FF5C5C;
+  --dataviz-risk-low: #00FF7F;
+  --dataviz-risk-medium: #FFFF00;
+  --dataviz-risk-high: #FF5C5C;
+  --dataviz-axis: #FDE68A;
+}
