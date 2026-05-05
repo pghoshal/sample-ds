@@ -1,0 +1,89 @@
+{
+  "app": {
+    "space": {
+      "none": {
+        "$value": "{space.0}",
+        "$type": "dimension",
+        "$description": "Application layout reset spacing."
+      },
+      "xs": {
+        "$value": "{space.2}",
+        "$type": "dimension",
+        "$description": "Compact inline application spacing."
+      },
+      "sm": {
+        "$value": "{space.3}",
+        "$type": "dimension",
+        "$description": "Small application spacing."
+      },
+      "md": {
+        "$value": "{space.4}",
+        "$type": "dimension",
+        "$description": "Default application spacing."
+      },
+      "lg": {
+        "$value": "{space.6}",
+        "$type": "dimension",
+        "$description": "Large section and card spacing."
+      },
+      "xl": {
+        "$value": "{space.8}",
+        "$type": "dimension",
+        "$description": "Page-level application spacing."
+      }
+    },
+    "type": {
+      "size": {
+        "body": {
+          "$value": "{font.size.sm}",
+          "$type": "dimension",
+          "$description": "Default application body text size."
+        },
+        "label": {
+          "$value": "{font.size.sm}",
+          "$type": "dimension",
+          "$description": "Application labels, captions, and metadata text size."
+        },
+        "control": {
+          "$value": "{font.size.md}",
+          "$type": "dimension",
+          "$description": "Text size for controls and compact navigation."
+        },
+        "metric": {
+          "$value": "{font.size.xl}",
+          "$type": "dimension",
+          "$description": "KPI and metric text size."
+        }
+      },
+      "weight": {
+        "regular": {
+          "$value": "{font.weight.regular}",
+          "$type": "number",
+          "$description": "Default application text weight."
+        },
+        "strong": {
+          "$value": "{font.weight.semibold}",
+          "$type": "number",
+          "$description": "Application emphasis and heading weight."
+        }
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "{radius.sm}",
+        "$type": "dimension",
+        "$description": "Small application radius for indicators and swatches."
+      },
+      "md": {
+        "$value": "{radius.md}",
+        "$type": "dimension",
+        "$description": "Default application radius for grouped surfaces."
+      },
+      "lg": {
+        "$value": "{radius.lg}",
+        "$type": "dimension",
+        "$description": "Large application radius for badges."
+      }
+    }
+  }
+}

@@ -21,26 +21,26 @@
   --elevation-card: 0 1px 2px rgba(15, 23, 42, 0.08);
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.08);
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --app-radius-sm: 4px;
+  --app-radius-md: 8px;
+  --app-radius-lg: 12px;
 
-  --space-0: 0px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
+  --app-space-none: 0px;
+  --app-space-xs: 8px;
+  --app-space-sm: 12px;
+  --app-space-md: 16px;
+  --app-space-lg: 24px;
+  --app-space-xl: 32px;
   --space-12: 48px;
 
   --layer-sticky: 10;
 
-  --font-size-sm: 14px;
-  --font-size-md: 16px;
+  --app-type-size-label: 14px;
+  --app-type-size-control: 16px;
   --font-size-lg: 20px;
-  --font-size-xl: 28px;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
+  --app-type-size-metric: 28px;
+  --app-type-weight-regular: 400;
+  --app-type-weight-strong: 600;
   --font-weight-bold: 700;
 
   --platform-web-font-body: Inter, Arial, sans-serif;
