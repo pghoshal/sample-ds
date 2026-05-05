@@ -20,14 +20,21 @@ The sample is fictional. It models a B2B analytics console with dense data, caut
 
 ## Expected MCP Flow
 
-1. Read `design://workflow` or call `describe_schema`.
-2. Run `inspect_coverage` with the `enterprise` profile.
-3. Use `recommend_composition` for a UI intent such as `Create a billing risk review page`.
-4. Use `get_usage` for selected components.
-5. Resolve every required token with `resolve_token`.
-6. Validate the planned components with `validate_composition`.
-7. Generate UI.
-8. Run `validate_ui`, repair deterministic issues, and validate again.
+1. Call `start_workflow` and keep the returned `workflowSessionId`.
+2. Read `design://workflow` or call `describe_schema`, passing `workflowSessionId` to every MCP tool.
+3. Run `inspect_coverage` with the `enterprise` profile.
+4. Use `search_design_system`, `list_entities`, `get_entity`, and `get_related` to load relevant patterns, principles, conventions, voice, and relations.
+5. Use `recommend_composition` for a UI intent such as `Create a billing risk review page`.
+6. Use `explain_decision` for selected patterns, components, and token families.
+7. Use `get_usage` for selected components.
+8. Use `get_component_source` for every component class before generating imports or markup.
+9. Resolve every required token with `resolve_token`.
+10. Validate the planned components with `validate_composition`.
+11. Generate UI by importing existing components when a platform mapping exists. For plain HTML, use explicit `html-adapter` evidence and mirror canonical source/usage structure.
+12. Run `validate_ui`, repair deterministic issues, and validate again.
+13. Run `validate_design_contract` with workflow, component-source, token-resolution, and decision evidence.
+
+Final handoff evidence must include `workflowEvidence.workflowSessionId` and `workflowEvidence.toolResults[]` entries with the current bundle version and tool-returned `sha256:` hashes. The MCP validator checks the server-side audit trail for source, usage, token, and decision tools, so final review cannot pass from claimed tool usage alone.
 
 ## Good Test Intent
 

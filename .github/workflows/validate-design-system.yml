@@ -51,19 +51,56 @@ jobs:
           node --input-type=module <<'NODE'
           import { buildBundle } from './dist/bundle/builder.js';
           import { createLogger } from './dist/observability/logger.js';
+          import { WorkflowAuditStore } from './dist/server/workflow-audit.js';
+          import { handler as describeSchema } from './dist/tools/describe-schema.js';
+          import { handler as explainDecision } from './dist/tools/explain-decision.js';
+          import { handler as getEntity } from './dist/tools/get-entity.js';
           import { handler as getComponentSource } from './dist/tools/get-component-source.js';
+          import { handler as getRelated } from './dist/tools/get-related.js';
+          import { handler as getUsage } from './dist/tools/get-usage.js';
           import { handler as inspectCoverage } from './dist/tools/inspect-coverage.js';
+          import { handler as listEntities } from './dist/tools/list-entities.js';
           import { handler as recommendComposition } from './dist/tools/recommend-composition.js';
+          import { handler as resolveToken } from './dist/tools/resolve-token.js';
+          import { handler as searchDesignSystem } from './dist/tools/search-design-system.js';
+          import { handler as startWorkflow } from './dist/tools/start-workflow.js';
           import { handler as validateDesignContract } from './dist/tools/validate-design-contract.js';
           import { handler as validateComposition } from './dist/tools/validate-composition.js';
           import { handler as validateUi } from './dist/tools/validate-ui.js';
+          import { LayeredCache } from './dist/util/lru.js';
+          import { hashJson } from './dist/util/stable-hash.js';
           const sourcePath = '../sample-ds';
           const logger = createLogger({ LOG_LEVEL: 'warn', DS_MCP_MODE: 'http' });
           const bundle = await buildBundle({ sourcePath, logger });
-          const ctx = { requestId: 'ci', logger, source: { current: () => bundle }, cache: { get: () => undefined, set: () => undefined } };
+          const audit = new WorkflowAuditStore();
+          const ctx = { requestId: 'ci', logger, source: { current: () => bundle }, cache: new LayeredCache(), audit };
+          const toolResults = [];
+          async function callTool(tool, handler, args) {
+            const result = await handler.handle(args, ctx);
+            const resultHash = hashJson(result);
+            if (args.workflowSessionId) {
+              audit.record(args.workflowSessionId, { tool, bundleVersion: bundle.version, resultHash, input: args, output: result });
+            }
+            toolResults.push({
+              tool,
+              ok: true,
+              bundleVersion: result.bundleVersion ?? bundle.version,
+              resultHash
+            });
+            return result;
+          }
+          const workflow = await callTool('start_workflow', startWorkflow, {
+            intent: 'Enterprise billing risk review smoke'
+          });
+          const workflowSession = { workflowSessionId: workflow.workflowSessionId };
           const riskPattern = bundle.entities.get('pattern:risk-dashboard');
           const riskRequiredTokens = riskPattern?.data?.structured?.contract?.requiredTokens ?? riskPattern?.data?.contract?.requiredTokens ?? [];
-          const coverage = await inspectCoverage.handle({ profile: 'enterprise', include_warnings: false }, ctx);
+          await callTool('describe_schema', describeSchema, workflowSession);
+          await callTool('search_design_system', searchDesignSystem, { ...workflowSession, query: 'billing risk dashboard', limit: 8 });
+          await callTool('list_entities', listEntities, { ...workflowSession, type: 'component', limit: 20 });
+          await callTool('get_entity', getEntity, { ...workflowSession, id: 'pattern:risk-dashboard' });
+          await callTool('get_related', getRelated, { ...workflowSession, id: 'pattern:risk-dashboard' });
+          const coverage = await callTool('inspect_coverage', inspectCoverage, { ...workflowSession, profile: 'enterprise', include_warnings: false });
           if (!coverage.ok) throw new Error(`coverage failed: ${JSON.stringify(coverage.issues)}`);
           for (const platformCase of [
             { platform: 'web', framework: 'react', allowedPrefix: 'token:platform.web.' },
@@ -72,7 +109,8 @@ jobs:
             { platform: 'react-native', framework: 'react-native', allowedPrefix: 'token:platform.reactNative.' },
             { platform: 'flutter', framework: 'flutter', allowedPrefix: 'token:platform.flutter.' }
           ]) {
-            const recommendation = await recommendComposition.handle({
+            const recommendation = await callTool('recommend_composition', recommendComposition, {
+              ...workflowSession,
               intent: 'Build an enterprise risk dashboard with charts table theme density and billing actions',
               platform: platformCase.platform,
               framework: platformCase.framework,
@@ -87,7 +125,40 @@ jobs:
               throw new Error(`${platformCase.platform} recommendation leaked other platform tokens: ${leaked.join(', ')}`);
             }
           }
-          const composition = await validateComposition.handle({
+          for (const id of [
+            'component:theme-provider',
+            'component:text-field',
+            'component:card',
+            'component:chart',
+            'component:data-table',
+            'component:badge',
+            'component:button'
+          ]) {
+            await callTool('get_usage', getUsage, { ...workflowSession, id, platform: 'web', framework: 'react' });
+          }
+          for (const query of [
+            'color.action.primary',
+            'state.action.primary.focusRing',
+            'dataviz.risk.high',
+            'space.4'
+          ]) {
+            await callTool('resolve_token', resolveToken, { ...workflowSession, query, limit: 1 });
+          }
+          for (const entityId of [
+            'component:theme-provider',
+            'component:text-field',
+            'component:card',
+            'component:chart',
+            'component:data-table',
+            'component:badge',
+            'component:button',
+            'token:color.action.primary',
+            'pattern:risk-dashboard'
+          ]) {
+            await callTool('explain_decision', explainDecision, { ...workflowSession, entityId });
+          }
+          const composition = await callTool('validate_composition', validateComposition, {
+            ...workflowSession,
             pattern: 'pattern:risk-dashboard',
             platform: 'web',
             framework: 'react',
@@ -108,13 +179,101 @@ jobs:
             ]
           }, ctx);
           if (!composition.ok) throw new Error(`composition failed: ${JSON.stringify(composition.violations)}`);
-          const source = await getComponentSource.handle({ id: 'component:button', includeStories: false }, ctx);
+          const componentIds = [
+            'component:theme-provider',
+            'component:text-field',
+            'component:card',
+            'component:chart',
+            'component:data-table',
+            'component:badge',
+            'component:button'
+          ];
+          const sourceByComponent = new Map();
+          for (const id of componentIds) {
+            sourceByComponent.set(id, await callTool('get_component_source', getComponentSource, { ...workflowSession, id, includeStories: false }));
+          }
+          const source = sourceByComponent.get('component:button');
           for (const language of ['tsx', 'css', 'kotlin', 'swift', 'dart']) {
             if (!source.files.some((file) => file.language === language)) {
               throw new Error(`component source missing ${language}: ${JSON.stringify(source.files.map((file) => file.path))}`);
             }
           }
-          const handoff = await validateDesignContract.handle({
+          const handoffInput = {
+            workflowEvidence: {
+              workflowSessionId: workflow.workflowSessionId,
+              requiredToolsUsed: [
+                'start_workflow',
+                'describe_schema',
+                'search_design_system',
+                'list_entities',
+                'get_entity',
+                'get_related',
+                'inspect_coverage',
+                'recommend_composition',
+                'get_usage',
+                'get_component_source',
+                'resolve_token',
+                'validate_composition',
+                'validate_ui',
+                'validate_design_contract',
+                'explain_decision'
+              ],
+              toolResults: [
+                ...toolResults,
+                {
+                  tool: 'validate_design_contract',
+                  ok: true,
+                  bundleVersion: bundle.version,
+                  resultHash: 'sha256:current-call'
+                }
+              ],
+              resourcesRead: ['design://workflow'],
+              coverageProfile: 'enterprise',
+              coverageInspected: true
+            },
+            componentSourceEvidence: {
+              mode: 'html-adapter',
+              targetPlatform: 'html',
+              targetFramework: 'static',
+              components: componentIds.map((id) => ({
+                id,
+                sourceChecked: true,
+                usageChecked: true,
+                sourceFiles: [
+                  bundle.entities.get(id).source.path,
+                  ...sourceByComponent.get(id).files.map((file) => file.path)
+                ],
+                adapterRationale: 'The CI visual proof is static HTML and Atlas does not declare an HTML component platform mapping.',
+                canonicalStructureMirrored: true
+              }))
+            },
+            tokenResolutionEvidence: {
+              resolvedTokens: [
+                { id: 'token:color.action.primary' },
+                { id: 'token:state.action.primary.focusRing' },
+                { id: 'token:dataviz.risk.high' },
+                { id: 'token:space.4' }
+              ],
+              cssVariables: [
+                '--color-action-primary',
+                '--state-action-primary-focusRing',
+                '--dataviz-risk-high',
+                '--app-space-md'
+              ]
+            },
+            decisionEvidence: {
+              explainedEntities: [
+                'component:theme-provider',
+                'component:text-field',
+                'component:card',
+                'component:chart',
+                'component:data-table',
+                'component:badge',
+                'component:button',
+                'token:color.action.primary',
+                'pattern:risk-dashboard'
+              ]
+            },
             contrastPairs: [
               {
                 foreground: 'token:color.text.primary',
@@ -183,7 +342,24 @@ jobs:
               mappedComponents: ['component:button', 'component:chart'],
               unmappedItems: []
             }
-          }, ctx);
+          };
+          const cleanUi = await callTool('validate_ui', validateUi, {
+            ...workflowSession,
+            language: 'tsx',
+            rules: [],
+            code: 'const color = "var(--color-action-primary)";'
+          });
+          if (!cleanUi.ok) throw new Error(`clean UI failed: ${JSON.stringify(cleanUi.violations)}`);
+          handoffInput.workflowEvidence.toolResults = [
+            ...toolResults,
+            {
+              tool: 'validate_design_contract',
+              ok: true,
+              bundleVersion: bundle.version,
+              resultHash: 'sha256:current-call'
+            }
+          ];
+          const handoff = await validateDesignContract.handle(handoffInput, ctx);
           if (!handoff.ok) throw new Error(`handoff contract failed: ${JSON.stringify(handoff.violations)}`);
           const badUi = await validateUi.handle({
             language: 'tsx',
