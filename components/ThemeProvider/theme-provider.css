@@ -1,0 +1,107 @@
+.atlas-theme-provider {
+  background: var(--color-surface-canvas);
+  color: var(--color-text-primary);
+  min-height: 100%;
+}
+
+.atlas-theme-provider[data-theme="light"] {
+  --color-surface-canvas: var(--theme-light-color-surface-canvas);
+  --color-surface-raised: var(--theme-light-color-surface-raised);
+  --color-surface-muted: var(--theme-light-color-surface-muted);
+  --color-surface-warning: var(--theme-light-color-surface-warning);
+  --color-surface-danger: var(--theme-light-color-surface-danger);
+  --color-surface-overlay: var(--theme-light-color-surface-overlay);
+  --color-text-primary: var(--theme-light-color-text-primary);
+  --color-text-secondary: var(--theme-light-color-text-secondary);
+  --color-text-inverse: var(--theme-light-color-text-inverse);
+  --color-text-danger: var(--theme-light-color-text-danger);
+  --color-action-primary: var(--theme-light-color-action-primary);
+  --color-action-primaryHover: var(--theme-light-color-action-primaryHover);
+  --color-action-danger: var(--theme-light-color-action-danger);
+  --color-status-success: var(--theme-light-color-status-success);
+  --color-status-warning: var(--theme-light-color-status-warning);
+  --color-status-danger: var(--theme-light-color-status-danger);
+  --state-action-primary-default: var(--theme-light-state-action-primary-default);
+  --state-action-primary-hover: var(--theme-light-state-action-primary-hover);
+  --state-action-primary-focusRing: var(--theme-light-state-action-primary-focusRing);
+  --state-action-primary-disabled: var(--theme-light-state-action-primary-disabled);
+  --state-action-danger-default: var(--theme-light-state-action-danger-default);
+  --state-action-danger-hover: var(--theme-light-state-action-danger-hover);
+  --state-action-danger-focusRing: var(--theme-light-state-action-danger-focusRing);
+  --dataviz-categorical-one: var(--theme-light-dataviz-categorical-one);
+  --dataviz-categorical-two: var(--theme-light-dataviz-categorical-two);
+  --dataviz-categorical-three: var(--theme-light-dataviz-categorical-three);
+  --dataviz-categorical-four: var(--theme-light-dataviz-categorical-four);
+  --dataviz-risk-low: var(--theme-light-dataviz-risk-low);
+  --dataviz-risk-medium: var(--theme-light-dataviz-risk-medium);
+  --dataviz-risk-high: var(--theme-light-dataviz-risk-high);
+  --dataviz-axis: var(--theme-light-dataviz-axis);
+}
+
+.atlas-theme-provider[data-theme="dark"] {
+  --color-surface-canvas: var(--theme-dark-color-surface-canvas);
+  --color-surface-raised: var(--theme-dark-color-surface-raised);
+  --color-surface-muted: var(--theme-dark-color-surface-muted);
+  --color-surface-warning: var(--theme-dark-color-surface-warning);
+  --color-surface-danger: var(--theme-dark-color-surface-danger);
+  --color-surface-overlay: var(--theme-dark-color-surface-overlay);
+  --color-text-primary: var(--theme-dark-color-text-primary);
+  --color-text-secondary: var(--theme-dark-color-text-secondary);
+  --color-text-inverse: var(--theme-dark-color-text-inverse);
+  --color-text-danger: var(--theme-dark-color-text-danger);
+  --color-action-primary: var(--theme-dark-color-action-primary);
+  --color-action-primaryHover: var(--theme-dark-color-action-primaryHover);
+  --color-action-danger: var(--theme-dark-color-action-danger);
+  --color-status-success: var(--theme-dark-color-status-success);
+  --color-status-warning: var(--theme-dark-color-status-warning);
+  --color-status-danger: var(--theme-dark-color-status-danger);
+  --state-action-primary-default: var(--theme-dark-state-action-primary-default);
+  --state-action-primary-hover: var(--theme-dark-state-action-primary-hover);
+  --state-action-primary-focusRing: var(--theme-dark-state-action-primary-focusRing);
+  --state-action-primary-disabled: var(--theme-dark-state-action-primary-disabled);
+  --state-action-danger-default: var(--theme-dark-state-action-danger-default);
+  --state-action-danger-hover: var(--theme-dark-state-action-danger-hover);
+  --state-action-danger-focusRing: var(--theme-dark-state-action-danger-focusRing);
+  --dataviz-categorical-one: var(--theme-dark-dataviz-categorical-one);
+  --dataviz-categorical-two: var(--theme-dark-dataviz-categorical-two);
+  --dataviz-categorical-three: var(--theme-dark-dataviz-categorical-three);
+  --dataviz-categorical-four: var(--theme-dark-dataviz-categorical-four);
+  --dataviz-risk-low: var(--theme-dark-dataviz-risk-low);
+  --dataviz-risk-medium: var(--theme-dark-dataviz-risk-medium);
+  --dataviz-risk-high: var(--theme-dark-dataviz-risk-high);
+  --dataviz-axis: var(--theme-dark-dataviz-axis);
+}
+
+.atlas-theme-provider[data-theme="highContrast"] {
+  --color-surface-canvas: var(--theme-highContrast-color-surface-canvas);
+  --color-surface-raised: var(--theme-highContrast-color-surface-raised);
+  --color-surface-muted: var(--theme-highContrast-color-surface-muted);
+  --color-surface-warning: var(--theme-highContrast-color-surface-warning);
+  --color-surface-danger: var(--theme-highContrast-color-surface-danger);
+  --color-surface-overlay: var(--theme-highContrast-color-surface-overlay);
+  --color-text-primary: var(--theme-highContrast-color-text-primary);
+  --color-text-secondary: var(--theme-highContrast-color-text-secondary);
+  --color-text-inverse: var(--theme-highContrast-color-text-inverse);
+  --color-text-danger: var(--theme-highContrast-color-text-danger);
+  --color-action-primary: var(--theme-highContrast-color-action-primary);
+  --color-action-primaryHover: var(--theme-highContrast-color-action-primaryHover);
+  --color-action-danger: var(--theme-highContrast-color-action-danger);
+  --color-status-success: var(--theme-highContrast-color-status-success);
+  --color-status-warning: var(--theme-highContrast-color-status-warning);
+  --color-status-danger: var(--theme-highContrast-color-status-danger);
+  --state-action-primary-default: var(--theme-highContrast-state-action-primary-default);
+  --state-action-primary-hover: var(--theme-highContrast-state-action-primary-hover);
+  --state-action-primary-focusRing: var(--theme-highContrast-state-action-primary-focusRing);
+  --state-action-primary-disabled: var(--theme-highContrast-state-action-primary-disabled);
+  --state-action-danger-default: var(--theme-highContrast-state-action-danger-default);
+  --state-action-danger-hover: var(--theme-highContrast-state-action-danger-hover);
+  --state-action-danger-focusRing: var(--theme-highContrast-state-action-danger-focusRing);
+  --dataviz-categorical-one: var(--theme-highContrast-dataviz-categorical-one);
+  --dataviz-categorical-two: var(--theme-highContrast-dataviz-categorical-two);
+  --dataviz-categorical-three: var(--theme-highContrast-dataviz-categorical-three);
+  --dataviz-categorical-four: var(--theme-highContrast-dataviz-categorical-four);
+  --dataviz-risk-low: var(--theme-highContrast-dataviz-risk-low);
+  --dataviz-risk-medium: var(--theme-highContrast-dataviz-risk-medium);
+  --dataviz-risk-high: var(--theme-highContrast-dataviz-risk-high);
+  --dataviz-axis: var(--theme-highContrast-dataviz-axis);
+}

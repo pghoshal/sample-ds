@@ -3,123 +3,182 @@
     "light": {
       "color": {
         "surface": {
-          "canvas": {
-            "$value": "{color.surface.canvas}",
-            "$type": "color",
-            "$description": "Light theme app canvas."
-          },
-          "raised": {
-            "$value": "{color.surface.raised}",
-            "$type": "color",
-            "$description": "Light theme raised surface."
-          },
-          "overlay": {
-            "$value": "#FFFFFF",
-            "$type": "color",
-            "$description": "Light theme overlay surface."
-          }
+          "canvas": { "$value": "{color.surface.canvas}", "$type": "color", "$description": "Light theme app canvas." },
+          "raised": { "$value": "{color.surface.raised}", "$type": "color", "$description": "Light theme raised surface." },
+          "muted": { "$value": "{color.surface.muted}", "$type": "color", "$description": "Light theme muted surface." },
+          "warning": { "$value": "{color.surface.warning}", "$type": "color", "$description": "Light theme warning surface." },
+          "danger": { "$value": "{color.surface.danger}", "$type": "color", "$description": "Light theme danger surface." },
+          "overlay": { "$value": "#FFFFFF", "$type": "color", "$description": "Light theme overlay surface." }
         },
         "text": {
-          "primary": {
-            "$value": "{color.text.primary}",
-            "$type": "color",
-            "$description": "Light theme primary text."
-          },
-          "secondary": {
-            "$value": "{color.text.secondary}",
-            "$type": "color",
-            "$description": "Light theme secondary text."
-          }
+          "primary": { "$value": "{color.text.primary}", "$type": "color", "$description": "Light theme primary text." },
+          "secondary": { "$value": "{color.text.secondary}", "$type": "color", "$description": "Light theme secondary text." },
+          "inverse": { "$value": "{color.text.inverse}", "$type": "color", "$description": "Light theme inverse text." },
+          "danger": { "$value": "{color.text.danger}", "$type": "color", "$description": "Light theme danger text." }
+        },
+        "action": {
+          "primary": { "$value": "{color.action.primary}", "$type": "color", "$description": "Light theme primary action." },
+          "primaryHover": { "$value": "{color.action.primaryHover}", "$type": "color", "$description": "Light theme primary action hover." },
+          "danger": { "$value": "{color.action.danger}", "$type": "color", "$description": "Light theme danger action." }
+        },
+        "status": {
+          "success": { "$value": "{color.status.success}", "$type": "color", "$description": "Light theme success status." },
+          "warning": { "$value": "{color.status.warning}", "$type": "color", "$description": "Light theme warning status." },
+          "danger": { "$value": "{color.status.danger}", "$type": "color", "$description": "Light theme danger status." }
         },
         "focus": {
-          "ring": {
-            "$value": "{color.blue.500}",
-            "$type": "color",
-            "$description": "Light theme focus ring."
+          "ring": { "$value": "{color.blue.500}", "$type": "color", "$description": "Light theme focus ring." }
+        }
+      },
+      "state": {
+        "action": {
+          "primary": {
+            "default": { "$value": "{state.action.primary.default}", "$type": "color", "$description": "Light theme primary action default state." },
+            "hover": { "$value": "{state.action.primary.hover}", "$type": "color", "$description": "Light theme primary action hover state." },
+            "focusRing": { "$value": "{state.action.primary.focusRing}", "$type": "color", "$description": "Light theme primary action focus ring." },
+            "disabled": { "$value": "{state.action.primary.disabled}", "$type": "color", "$description": "Light theme disabled action background." }
+          },
+          "danger": {
+            "default": { "$value": "{state.action.danger.default}", "$type": "color", "$description": "Light theme danger action default state." },
+            "hover": { "$value": "{state.action.danger.hover}", "$type": "color", "$description": "Light theme danger action hover state." },
+            "focusRing": { "$value": "{state.action.danger.focusRing}", "$type": "color", "$description": "Light theme danger action focus ring." }
           }
         }
+      },
+      "dataviz": {
+        "categorical": {
+          "one": { "$value": "{dataviz.categorical.one}", "$type": "color", "$description": "Light theme categorical series one." },
+          "two": { "$value": "{dataviz.categorical.two}", "$type": "color", "$description": "Light theme categorical series two." },
+          "three": { "$value": "{dataviz.categorical.three}", "$type": "color", "$description": "Light theme categorical series three." },
+          "four": { "$value": "{dataviz.categorical.four}", "$type": "color", "$description": "Light theme categorical series four." }
+        },
+        "risk": {
+          "low": { "$value": "{dataviz.risk.low}", "$type": "color", "$description": "Light theme low-risk series." },
+          "medium": { "$value": "{dataviz.risk.medium}", "$type": "color", "$description": "Light theme medium-risk series." },
+          "high": { "$value": "{dataviz.risk.high}", "$type": "color", "$description": "Light theme high-risk series." }
+        },
+        "axis": { "$value": "{dataviz.axis}", "$type": "color", "$description": "Light theme chart axis." }
       }
     },
     "dark": {
       "color": {
         "surface": {
-          "canvas": {
-            "$value": "#0B1120",
-            "$type": "color",
-            "$description": "Dark theme app canvas."
-          },
-          "raised": {
-            "$value": "#111827",
-            "$type": "color",
-            "$description": "Dark theme raised surface."
-          },
-          "overlay": {
-            "$value": "#1F2937",
-            "$type": "color",
-            "$description": "Dark theme overlay surface."
-          }
+          "canvas": { "$value": "#0B1120", "$type": "color", "$description": "Dark theme app canvas." },
+          "raised": { "$value": "#111827", "$type": "color", "$description": "Dark theme raised surface." },
+          "muted": { "$value": "#1E293B", "$type": "color", "$description": "Dark theme muted surface." },
+          "warning": { "$value": "#422006", "$type": "color", "$description": "Dark theme warning surface." },
+          "danger": { "$value": "#450A0A", "$type": "color", "$description": "Dark theme danger surface." },
+          "overlay": { "$value": "#1F2937", "$type": "color", "$description": "Dark theme overlay surface." }
         },
         "text": {
-          "primary": {
-            "$value": "#F8FAFC",
-            "$type": "color",
-            "$description": "Dark theme primary text."
-          },
-          "secondary": {
-            "$value": "#CBD5E1",
-            "$type": "color",
-            "$description": "Dark theme secondary text."
-          }
+          "primary": { "$value": "#F8FAFC", "$type": "color", "$description": "Dark theme primary text." },
+          "secondary": { "$value": "#CBD5E1", "$type": "color", "$description": "Dark theme secondary text." },
+          "inverse": { "$value": "#0B1120", "$type": "color", "$description": "Dark theme inverse text for strong action fills." },
+          "danger": { "$value": "#FCA5A5", "$type": "color", "$description": "Dark theme danger text." }
+        },
+        "action": {
+          "primary": { "$value": "#60A5FA", "$type": "color", "$description": "Dark theme primary action." },
+          "primaryHover": { "$value": "#93C5FD", "$type": "color", "$description": "Dark theme primary action hover." },
+          "danger": { "$value": "#F87171", "$type": "color", "$description": "Dark theme danger action." }
+        },
+        "status": {
+          "success": { "$value": "#34D399", "$type": "color", "$description": "Dark theme success status." },
+          "warning": { "$value": "#FBBF24", "$type": "color", "$description": "Dark theme warning status." },
+          "danger": { "$value": "#F87171", "$type": "color", "$description": "Dark theme danger status." }
         },
         "focus": {
-          "ring": {
-            "$value": "#60A5FA",
-            "$type": "color",
-            "$description": "Dark theme focus ring."
+          "ring": { "$value": "#60A5FA", "$type": "color", "$description": "Dark theme focus ring." }
+        }
+      },
+      "state": {
+        "action": {
+          "primary": {
+            "default": { "$value": "{theme.dark.color.action.primary}", "$type": "color", "$description": "Dark theme primary action default state." },
+            "hover": { "$value": "{theme.dark.color.action.primaryHover}", "$type": "color", "$description": "Dark theme primary action hover state." },
+            "focusRing": { "$value": "{theme.dark.color.focus.ring}", "$type": "color", "$description": "Dark theme primary action focus ring." },
+            "disabled": { "$value": "#334155", "$type": "color", "$description": "Dark theme disabled action background." }
+          },
+          "danger": {
+            "default": { "$value": "{theme.dark.color.action.danger}", "$type": "color", "$description": "Dark theme danger action default state." },
+            "hover": { "$value": "#FCA5A5", "$type": "color", "$description": "Dark theme danger action hover state." },
+            "focusRing": { "$value": "#F87171", "$type": "color", "$description": "Dark theme danger action focus ring." }
           }
         }
+      },
+      "dataviz": {
+        "categorical": {
+          "one": { "$value": "#93C5FD", "$type": "color", "$description": "Dark theme categorical series one." },
+          "two": { "$value": "#6EE7B7", "$type": "color", "$description": "Dark theme categorical series two." },
+          "three": { "$value": "#FCD34D", "$type": "color", "$description": "Dark theme categorical series three." },
+          "four": { "$value": "#FCA5A5", "$type": "color", "$description": "Dark theme categorical series four." }
+        },
+        "risk": {
+          "low": { "$value": "#34D399", "$type": "color", "$description": "Dark theme low-risk series." },
+          "medium": { "$value": "#FBBF24", "$type": "color", "$description": "Dark theme medium-risk series." },
+          "high": { "$value": "#F87171", "$type": "color", "$description": "Dark theme high-risk series." }
+        },
+        "axis": { "$value": "{theme.dark.color.text.secondary}", "$type": "color", "$description": "Dark theme chart axis." }
       }
     },
     "highContrast": {
       "color": {
         "surface": {
-          "canvas": {
-            "$value": "#000000",
-            "$type": "color",
-            "$description": "High contrast app canvas."
-          },
-          "raised": {
-            "$value": "#000000",
-            "$type": "color",
-            "$description": "High contrast raised surface."
-          },
-          "overlay": {
-            "$value": "#000000",
-            "$type": "color",
-            "$description": "High contrast overlay surface."
-          }
+          "canvas": { "$value": "#000000", "$type": "color", "$description": "High contrast app canvas." },
+          "raised": { "$value": "#000000", "$type": "color", "$description": "High contrast raised surface." },
+          "muted": { "$value": "#111111", "$type": "color", "$description": "High contrast muted surface." },
+          "warning": { "$value": "#000000", "$type": "color", "$description": "High contrast warning surface." },
+          "danger": { "$value": "#000000", "$type": "color", "$description": "High contrast danger surface." },
+          "overlay": { "$value": "#000000", "$type": "color", "$description": "High contrast overlay surface." }
         },
         "text": {
-          "primary": {
-            "$value": "#FFFFFF",
-            "$type": "color",
-            "$description": "High contrast primary text."
-          },
-          "secondary": {
-            "$value": "#FDE68A",
-            "$type": "color",
-            "$description": "High contrast secondary text."
-          }
+          "primary": { "$value": "#FFFFFF", "$type": "color", "$description": "High contrast primary text." },
+          "secondary": { "$value": "#FDE68A", "$type": "color", "$description": "High contrast secondary text." },
+          "inverse": { "$value": "#000000", "$type": "color", "$description": "High contrast inverse text for bright fills." },
+          "danger": { "$value": "#FFB4B4", "$type": "color", "$description": "High contrast danger text." }
+        },
+        "action": {
+          "primary": { "$value": "#FFFF00", "$type": "color", "$description": "High contrast primary action." },
+          "primaryHover": { "$value": "#FFF59D", "$type": "color", "$description": "High contrast primary action hover." },
+          "danger": { "$value": "#FF5C5C", "$type": "color", "$description": "High contrast danger action." }
+        },
+        "status": {
+          "success": { "$value": "#00FF7F", "$type": "color", "$description": "High contrast success status." },
+          "warning": { "$value": "#FFFF00", "$type": "color", "$description": "High contrast warning status." },
+          "danger": { "$value": "#FF5C5C", "$type": "color", "$description": "High contrast danger status." }
         },
         "focus": {
-          "ring": {
-            "$value": "#FDE047",
-            "$type": "color",
-            "$description": "High contrast focus ring."
+          "ring": { "$value": "#FDE047", "$type": "color", "$description": "High contrast focus ring." }
+        }
+      },
+      "state": {
+        "action": {
+          "primary": {
+            "default": { "$value": "{theme.highContrast.color.action.primary}", "$type": "color", "$description": "High contrast primary action default state." },
+            "hover": { "$value": "{theme.highContrast.color.action.primaryHover}", "$type": "color", "$description": "High contrast primary action hover state." },
+            "focusRing": { "$value": "{theme.highContrast.color.focus.ring}", "$type": "color", "$description": "High contrast primary action focus ring." },
+            "disabled": { "$value": "#3F3F46", "$type": "color", "$description": "High contrast disabled action background." }
+          },
+          "danger": {
+            "default": { "$value": "{theme.highContrast.color.action.danger}", "$type": "color", "$description": "High contrast danger action default state." },
+            "hover": { "$value": "#FFB4B4", "$type": "color", "$description": "High contrast danger action hover state." },
+            "focusRing": { "$value": "#FF5C5C", "$type": "color", "$description": "High contrast danger action focus ring." }
           }
         }
+      },
+      "dataviz": {
+        "categorical": {
+          "one": { "$value": "#00FFFF", "$type": "color", "$description": "High contrast categorical series one." },
+          "two": { "$value": "#00FF7F", "$type": "color", "$description": "High contrast categorical series two." },
+          "three": { "$value": "#FFFF00", "$type": "color", "$description": "High contrast categorical series three." },
+          "four": { "$value": "#FF5C5C", "$type": "color", "$description": "High contrast categorical series four." }
+        },
+        "risk": {
+          "low": { "$value": "#00FF7F", "$type": "color", "$description": "High contrast low-risk series." },
+          "medium": { "$value": "#FFFF00", "$type": "color", "$description": "High contrast medium-risk series." },
+          "high": { "$value": "#FF5C5C", "$type": "color", "$description": "High contrast high-risk series." }
+        },
+        "axis": { "$value": "{theme.highContrast.color.text.secondary}", "$type": "color", "$description": "High contrast chart axis." }
       }
     }
   }
 }
-

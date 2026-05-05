@@ -61,6 +61,8 @@ jobs:
           const logger = createLogger({ LOG_LEVEL: 'warn', DS_MCP_MODE: 'http' });
           const bundle = await buildBundle({ sourcePath, logger });
           const ctx = { requestId: 'ci', logger, source: { current: () => bundle }, cache: { get: () => undefined, set: () => undefined } };
+          const riskPattern = bundle.entities.get('pattern:risk-dashboard');
+          const riskRequiredTokens = riskPattern?.data?.structured?.contract?.requiredTokens ?? riskPattern?.data?.contract?.requiredTokens ?? [];
           const coverage = await inspectCoverage.handle({ profile: 'enterprise', include_warnings: false }, ctx);
           if (!coverage.ok) throw new Error(`coverage failed: ${JSON.stringify(coverage.issues)}`);
           for (const platformCase of [
@@ -90,16 +92,7 @@ jobs:
             platform: 'web',
             framework: 'react',
             tokens: [
-              'token:theme.light.color.surface.canvas',
-              'token:theme.dark.color.surface.canvas',
-              'token:theme.highContrast.color.surface.canvas',
-              'token:density.compact.control.height',
-              'token:density.comfortable.card.padding',
-              'token:dataviz.risk.high',
-              'token:dataviz.axis',
-              'token:motion.duration.normal',
-              'token:elevation.card',
-              'token:layer.sticky',
+              ...riskRequiredTokens,
               'token:platform.web.layout.pageMaxWidth',
               'token:breakpoint.md',
               'token:platform.web.font.body'
@@ -127,8 +120,35 @@ jobs:
                 foreground: 'token:color.text.primary',
                 background: 'token:color.surface.raised',
                 minimumRatio: 4.5
+              },
+              {
+                foreground: 'token:theme.dark.color.text.primary',
+                background: 'token:theme.dark.color.surface.raised',
+                minimumRatio: 4.5
+              },
+              {
+                foreground: 'token:theme.highContrast.color.text.primary',
+                background: 'token:theme.highContrast.color.surface.raised',
+                minimumRatio: 7
               }
             ],
+            themeCoverage: {
+              themes: ['light', 'dark', 'highContrast'],
+              components: [
+                'component:theme-provider',
+                'component:card',
+                'component:data-table',
+                'component:chart',
+                'component:badge',
+                'component:button'
+              ],
+              tokens: [
+                'token:color.surface.muted',
+                'token:color.action.primary',
+                'token:state.action.primary.focusRing',
+                'token:dataviz.risk.high'
+              ]
+            },
             dataViz: {
               seriesTokens: ['token:dataviz.risk.high'],
               summary: 'High risk invoice exposure increased this week.'

@@ -30,8 +30,44 @@ contract:
     - component:legacy-button
   requiredTokens:
     - token:theme.light.color.surface.canvas
+    - token:theme.light.color.surface.raised
+    - token:theme.light.color.surface.muted
+    - token:theme.light.color.surface.warning
+    - token:theme.light.color.surface.danger
+    - token:theme.light.color.text.primary
+    - token:theme.light.color.text.secondary
+    - token:theme.light.color.text.inverse
+    - token:theme.light.color.action.primary
+    - token:theme.light.color.action.danger
+    - token:theme.light.state.action.primary.focusRing
+    - token:theme.light.dataviz.risk.high
+    - token:theme.light.dataviz.axis
     - token:theme.dark.color.surface.canvas
+    - token:theme.dark.color.surface.raised
+    - token:theme.dark.color.surface.muted
+    - token:theme.dark.color.surface.warning
+    - token:theme.dark.color.surface.danger
+    - token:theme.dark.color.text.primary
+    - token:theme.dark.color.text.secondary
+    - token:theme.dark.color.text.inverse
+    - token:theme.dark.color.action.primary
+    - token:theme.dark.color.action.danger
+    - token:theme.dark.state.action.primary.focusRing
+    - token:theme.dark.dataviz.risk.high
+    - token:theme.dark.dataviz.axis
     - token:theme.highContrast.color.surface.canvas
+    - token:theme.highContrast.color.surface.raised
+    - token:theme.highContrast.color.surface.muted
+    - token:theme.highContrast.color.surface.warning
+    - token:theme.highContrast.color.surface.danger
+    - token:theme.highContrast.color.text.primary
+    - token:theme.highContrast.color.text.secondary
+    - token:theme.highContrast.color.text.inverse
+    - token:theme.highContrast.color.action.primary
+    - token:theme.highContrast.color.action.danger
+    - token:theme.highContrast.state.action.primary.focusRing
+    - token:theme.highContrast.dataviz.risk.high
+    - token:theme.highContrast.dataviz.axis
     - token:density.compact.control.height
     - token:density.comfortable.card.padding
     - token:dataviz.risk.high
