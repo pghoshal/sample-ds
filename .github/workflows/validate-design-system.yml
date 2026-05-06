@@ -215,18 +215,9 @@ jobs:
                 'resolve_token',
                 'validate_composition',
                 'validate_ui',
-                'validate_design_contract',
                 'explain_decision'
               ],
-              toolResults: [
-                ...toolResults,
-                {
-                  tool: 'validate_design_contract',
-                  ok: true,
-                  bundleVersion: bundle.version,
-                  resultHash: 'sha256:current-call'
-                }
-              ],
+              toolResults: [],
               resourcesRead: ['design://workflow'],
               coverageProfile: 'enterprise',
               coverageInspected: true
@@ -350,15 +341,7 @@ jobs:
             code: 'const color = "var(--color-action-primary)";'
           });
           if (!cleanUi.ok) throw new Error(`clean UI failed: ${JSON.stringify(cleanUi.violations)}`);
-          handoffInput.workflowEvidence.toolResults = [
-            ...toolResults,
-            {
-              tool: 'validate_design_contract',
-              ok: true,
-              bundleVersion: bundle.version,
-              resultHash: 'sha256:current-call'
-            }
-          ];
+          handoffInput.workflowEvidence.toolResults = [...toolResults];
           const handoff = await validateDesignContract.handle(handoffInput, ctx);
           if (!handoff.ok) throw new Error(`handoff contract failed: ${JSON.stringify(handoff.violations)}`);
           const badUi = await validateUi.handle({
